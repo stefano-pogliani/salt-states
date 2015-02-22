@@ -5,4 +5,5 @@
     - group:    root
     - mode:     644
     - template: jinja
+    - makedirs: True
 
