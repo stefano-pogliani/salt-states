@@ -1,5 +1,5 @@
 pull-cfg:
-  cmd.run:
+  git pull:
     - cwd:  /etc/salt
-    - name: "git pull origin master"
+    - opts: "origin master"
 
