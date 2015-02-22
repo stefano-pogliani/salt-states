@@ -3,9 +3,15 @@ salt-master:
     table: filter
     chain: INPUT
     jump:  ACCEPT
-    dports:
-      - 4505
-      - 4506
+    dport: 4505
+    proto: tcp
+    save:  True
+
+  iptables.append:
+    table: filter
+    chain: INPUT
+    jump:  ACCEPT
+    dport: 4506
     proto: tcp
     save:  True
 
