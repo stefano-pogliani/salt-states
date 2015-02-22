@@ -1,5 +1,7 @@
 pull-cfg:
-  git pull:
-    - cwd:  /etc/salt
-    - opts: "origin master"
+  git.latest:
+    - name:        "git@forest:config/salt.git"
+    - remote_name: origin
+    - rev:         master
+    - target:      /etc/salt
 
