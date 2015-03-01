@@ -1,9 +1,10 @@
 # TODO(stefano): zabbix user and group.
 
-/opt/zabbix:
+zabbix-extract-archive:
   archive.extracted:
     - archive_format: tar
     - group:          zabbix
+    - name:           /opt
     - user:           zabbix
     - tar_options:    z
     - source: salt://data/zabbix/binaries/{{ salt['pillar.get']('zabbix:archive', 'armhf.tar.gz') }}
