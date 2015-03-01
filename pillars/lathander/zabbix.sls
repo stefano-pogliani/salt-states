@@ -4,5 +4,5 @@ zabbix-server:
   dbhost: thoth
   dbname: zabbix
   dbuser: zabbix
-  dbpass: zabbix
+  dbpass: 'z8x-s3rv3r-d4t4'
 
