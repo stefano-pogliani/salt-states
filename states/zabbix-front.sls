@@ -1,8 +1,8 @@
 /data/www/zabbix/conf/zabbix.conf.php:
   file.managed:
     - source:   salt://data/zabbix/zabbix.conf.php
-    - user:     zabbix
-    - group:    zabbix
+    - user:     www-data
+    - group:    www-data
     - mode:     644
     - template: jinja
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-salt '*' state.highstate
+salt '*' state.highstate $*
 
