@@ -360,6 +360,8 @@ timeout: 300
 file_roots:
   base:
     - /etc/salt/states
+    - /etc/salt/formulas/jenkins-formula
+    - /etc/salt/formulas/zabbix-formula
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server. The default is md5, but sha1, sha224, sha256, sha384

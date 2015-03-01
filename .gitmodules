@@ -1,0 +1,6 @@
+[submodule "formulas/jenkins-formula"]
+	path = formulas/jenkins-formula
+	url = git@github.com:saltstack-formulas/jenkins-formula.git
+[submodule "formulas/zabbix-formula"]
+	path = formulas/zabbix-formula
+	url = git@github.com:saltstack-formulas/zabbix-formula.git
