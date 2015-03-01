@@ -5,8 +5,9 @@ base:
   #amber:
   #  - jenkins
 
-  #forest:
-  #  - zabbix.agent.conf
+  forest:
+    - zabbix-front
+    #- zabbix.agent.conf
 
   lathander:
     - pull-cfg
