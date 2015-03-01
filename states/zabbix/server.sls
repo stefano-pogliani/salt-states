@@ -20,7 +20,8 @@ zabbix-server-config:
 zabbix-server-service:
   service.running:
     - enable: True
+    - name:   zabbix-server
 
   require:
-    - zabbix-server-service
+    - file.managed: /opt/zabbix/etc/zabbix_server.conf
 
