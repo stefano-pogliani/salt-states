@@ -24,3 +24,9 @@ zabbix-extract-archive:
     - group:  root
     - mode:   755
 
+/var/log/zabbix:
+  file.directory:
+    - user:   zabbix
+    - group:  zabbix
+    - mode:   755
+
