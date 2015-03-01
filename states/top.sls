@@ -12,8 +12,7 @@ base:
   lathander:
     - pull-cfg
 
-    #- zabbix.agent
-    - zabbix.binaries
+    - zabbix.agent
     - zabbix.server
 
     # Temporarely use iptables only for one host to test it.
