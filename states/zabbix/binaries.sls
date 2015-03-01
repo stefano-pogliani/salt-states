@@ -4,6 +4,7 @@ zabbix-extract-archive:
   archive.extracted:
     - archive_format: tar
     - group:          zabbix
+    - is_missing:     zabbix/
     - name:           /opt
     - user:           zabbix
     - tar_options:    z

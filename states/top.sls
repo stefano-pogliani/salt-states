@@ -8,10 +8,11 @@ base:
 
   forest:
     - zabbix.front
-    #- zabbix.agent.conf
 
   lathander:
     - pull-cfg
+
+    #- zabbix.agent
     - zabbix.binaries
     - zabbix.server
 

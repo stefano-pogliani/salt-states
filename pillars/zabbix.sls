@@ -2,26 +2,26 @@
 # TODO(stefano): move password into a separate private repository.
 
 zabbix-agent:
-  listenip:     0.0.0.0
-  listenport:   10050
-  server:       lathander
-  serveractive: lathander
+  listen-ip:     0.0.0.0
+  listen-port:   10050
+  server:        lathander
+  server-active: lathander
 
 zabbix-frontend:
-  dbhost: thoth
-  dbname: zabbix
-  dbuser: zabbix
-  dbpass: 'z8x-s3rv3r-d4t4'
+  db-host: thoth
+  db-name: zabbix
+  db-user: zabbix
+  db-pass: 'z8x-s3rv3r-d4t4'
 
-  zbxserver:     lathander
-  zbxserverport: 10051
-  zbxservername: 'sph'
+  zbx-server:     lathander
+  zbx-server-port: 10051
+  zbx-server-name: 'sph'
 
 zabbix-server:
-  listenip:   0.0.0.0
-  listenport: 10051
-  dbhost: thoth
-  dbname: zabbix
-  dbuser: zabbix
-  dbpass: 'z8x-s3rv3r-d4t4'
+  listen-ip:   0.0.0.0
+  listen-port: 10051
+  db-host: thoth
+  db-name: zabbix
+  db-user: zabbix
+  db-pass: 'z8x-s3rv3r-d4t4'
 

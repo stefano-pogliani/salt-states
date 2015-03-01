@@ -5,7 +5,22 @@ zabbix-server-install:
   require:
     - sls: zabbix.binaries
 
-zabbix-server:
+zabbix-server-config:
+  file.managed:
+    - name:     /opt/zabbix/etc/zabbix_server.conf
+    - user:     zabbix
+    - group:    zabbix
+    - mode:     644
+    - source:   salt://data/zabbix/zabbix_server.conf
+    - template: jinja
+
+  require:
+    - sls: zabbix.binaries
+
+zabbix-server-service:
   service.running:
     - enable: True
+
+  require:
+    - zabbix-server-service
 
