@@ -10,15 +10,15 @@
 
 /etc/init.d/zabbix-agent:
   file.managed:
-    - source:   salt://data/zabbix/zabbix-agent
-    - user:     root
-    - group:    root
-    - mode:     755
+    - source: salt://data/zabbix/zabbix-agent
+    - user:   root
+    - group:  root
+    - mode:   755
 
 /etc/init.d/zabbix-server:
   file.managed:
-    - source:   salt://data/zabbix/zabbix-server
-    - user:     root
-    - group:    root
-    - mode:     755
+    - source: salt://data/zabbix/zabbix-server
+    - user:   root
+    - group:  root
+    - mode:   755
 
