@@ -2,11 +2,11 @@
 
 /opt/zabbix:
   archive.extracted:
-    archive_format: tar
-    group:          zabbix
-    user:           zabbix
-    tar_options:    z
-    source: salt://data/zabbix/binaries/{{ salt['pillar.get']('zabbix:archive', 'armhf.tar.gz') }}
+    - archive_format: tar
+    - group:          zabbix
+    - user:           zabbix
+    - tar_options:    z
+    - source: salt://data/zabbix/binaries/{{ salt['pillar.get']('zabbix:archive', 'armhf.tar.gz') }}
 
 /etc/init.d/zabbix-agent:
   file.managed:

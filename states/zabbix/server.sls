@@ -7,5 +7,5 @@ zabbix-server-install:
 
 zabbix-server:
   service.running:
-    enable: True
+    - enable: True
 
