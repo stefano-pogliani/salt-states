@@ -1,20 +1,19 @@
 base:
-  #'*':
-  #  - iptables
+  '*':
+    #- iptables
+    - ssh.keys.stefano@sintofan
 
   #amber:
   #  - jenkins
 
   forest:
-    - zabbix-front
+    - zabbix.front
     #- zabbix.agent.conf
 
   lathander:
     - pull-cfg
-    - zabbix.agent.conf
-    - zabbix.agent.repo
-    - zabbix.server.conf
-    - zabbix.server.repo
+    #- zabbix.agent.conf
+    #- zabbix.server.conf
 
     # Temporarely use iptables only for one host to test it.
     - iptables
