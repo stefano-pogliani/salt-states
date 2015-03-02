@@ -4,8 +4,8 @@
 zabbix-agent:
   listen-ip:     0.0.0.0
   listen-port:   10050
-  server:        {{ salt['dnsutil.A']('lathander')[0] }}
-  server-active: {{ salt['dnsutil.A']('lathander')[0] }}
+  server:        192.168.16.68
+  server-active: 192.168.16.68
 
 zabbix-frontend:
   db-host: thoth

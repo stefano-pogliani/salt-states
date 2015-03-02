@@ -1,3 +1,5 @@
+# TODO(stefano): Add watch_in to restart service on config change.
+
 include:
   - zabbix.binaries
 
