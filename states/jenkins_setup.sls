@@ -1,3 +1,6 @@
+{% set settings = salt['pillar.get']('jenkins-setup', {}) -%}
+
+
 include:
   - jenkins
 
@@ -7,6 +10,9 @@ jenkins_config:
   file.managed:
     - name:   /var/lib/jenkins/config.xml
     - source: salt://data/jenkins/config.xml
+
+    - group: jenkins
+    - user:  jenkins
 
     - requires:
       - sls: jenkins
@@ -19,6 +25,9 @@ jenkins_credentials:
   file.managed:
     - name:   /var/lib/jenkins/credentials.xml
     - source: salt://priv-data/jenkins/credentials.xml
+
+    - group: jenkins
+    - user:  jenkins
 
     - requires:
       - sls: jenkins
@@ -33,6 +42,9 @@ jenkins_credentials_{{f}}:
     - makedirs: True
     - name:     /var/lib/jenkins/.ssh/{{f}}
     - source:   salt://priv-data/jenkins/ssh/{{f}}
+
+    - group: jenkins
+    - user:  jenkins
 
     - requires:
       - sls: jenkins
@@ -49,14 +61,13 @@ jenkins_users_stefano:
     - name:     /var/lib/jenkins/users/stefano/config.xml
     - source:   salt://priv-data/jenkins/users/stefano/config.xml
 
+    - group: jenkins
+    - user:  jenkins
+
     - requires:
       - sls: jenkins
     - watch_in:
       - service: jenkins
-
-
-# Fetch jenkins setup settins
-{% set settings = salt['pillar.get']('jenkins-setup', {}) -%}
 
 
 # Install and update plugins
@@ -81,6 +92,9 @@ jenkins_project_{{project}}:
     - makedirs: True
     - name:     /var/lib/jenkins/jobs/{{project}}/config.xml
     - source:   salt://data/jenkins/jobs/{{project}}/config.xml
+
+    - group: jenkins
+    - user:  jenkins
 
     - requires:
       - sls: jenkins
