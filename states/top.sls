@@ -1,10 +1,13 @@
 base:
   '*':
+    - aliases.core
+    - editors.vim
     #- iptables
     - ssh.keys.stefano@sintofan
 
-  #amber:
-  #  - jenkins
+  amber:
+    - jenkins
+    - jenkins_plugins
 
   forest:
     - zabbix.front

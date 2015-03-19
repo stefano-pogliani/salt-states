@@ -2,6 +2,9 @@ base:
   '*':
     - zabbix
 
+  amber:
+    - amber.jenkins
+
   #forest:
   #  - forest.zabbix
 
