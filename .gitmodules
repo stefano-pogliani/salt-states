@@ -1,3 +1,6 @@
 [submodule "formulas/jenkins-formula"]
 	path = formulas/jenkins-formula
 	url = git@github.com:saltstack-formulas/jenkins-formula.git
+[submodule "priv"]
+	path = priv
+	url = git-priv@forest:config/salt.git
