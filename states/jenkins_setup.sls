@@ -61,11 +61,11 @@ jenkins_plugins_{{plugin}}:
   jenkins_plugin.ensure:
     - name: {{plugin}}
 
-#    - requires:
-#      - jenkins_config
-#      - sls: jenkins
-#    - watch_in:
-#      - service: jenkins
+    - requires:
+      - jenkins_config
+      - sls: jenkins
+    - watch_in:
+      - service: jenkins
 
 {% endfor %}
 

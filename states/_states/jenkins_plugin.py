@@ -77,7 +77,7 @@ def ensure(home="/var/lib/jenkins", name=None, update=True, **kwargs):
   metadata_location = os.path.join(
       home, "plugins", name, "META-INF", "MANIFEST.MF"
   )
-  installed = os.exists(metadata_location)
+  installed = os.path.exists(metadata_location)
   outdated  = False
   version   = None
 
@@ -87,21 +87,30 @@ def ensure(home="/var/lib/jenkins", name=None, update=True, **kwargs):
       version = [
           line for line in metadata.readlines()
           if line.startswith("Plugin-Version: ")
-      ][0][15:]
+      ][0][15:].strip()
       outdated = version != latest_version
       log.debug("Detected installed version {version}".format(version=version))
 
   # Install update if needed and requested.
   if not installed or (update and outdated):
-    _cache.download(name, download_target)
+    if installed:
+      result["comment"] = "Install plugin version {0}".format(version)
+    else:
+      result["comment"] = "Update plugin to version {0}".format(version)
+
     result["changes"][name] = {
       "new": latest_version,
       "old": version
     }
 
+    # Do not run is test is set.
+    if __opts__["test"]:
+      result["result"] = None
+      return result
+    _cache.download(name, download_target)
+
   else:
     change = {}
 
-  log.debug(("~~~", kwargs))
   return result
 
