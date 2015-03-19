@@ -1,3 +1,3 @@
 jenkins:
-  - home: /var/lib/jenkins
+  home: /var/lib/jenkins
 
