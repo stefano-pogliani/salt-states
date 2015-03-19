@@ -30,8 +30,9 @@ jenkins_credentials:
 {% for f in ['id_rsa', 'id_rsa.pub', 'known_hosts'] %}
 jenkins_credentials_{{f}}:
   file.managed:
-    - name:   /var/lib/jenkins/.ssh/{{f}}
-    - source: salt://priv-data/jenkins/ssh/{{f}}
+    - makedirs: True
+    - name:     /var/lib/jenkins/.ssh/{{f}}
+    - source:   salt://priv-data/jenkins/ssh/{{f}}
 
     - requires:
       - sls: jenkins
@@ -54,14 +55,17 @@ jenkins_users_stefano:
       - service: jenkins
 
 
-#jenkins_plugins:
-#  jenkins_plugin.ensure:
-#    - name: git_plugin
-#
+# Install and update plugins
+{% for plugin in ['credentials'] %}
+jenkins_plugins_{{plugin}}:
+  jenkins_plugin.ensure:
+    - name: {{plugin}}
+
 #    - requires:
 #      - jenkins_config
 #      - sls: jenkins
-#
 #    - watch_in:
 #      - service: jenkins
+
+{% endfor %}
 
