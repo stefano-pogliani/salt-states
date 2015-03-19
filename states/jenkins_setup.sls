@@ -55,14 +55,34 @@ jenkins_users_stefano:
       - service: jenkins
 
 
+# Fetch jenkins setup settins
+{% set settings = salt['pillar.get']('jenkins-setup', {}) -%}
+
+
 # Install and update plugins
-{% for plugin in ['credentials'] %}
+{% for plugin in settings.get('plugins', []) %}
 jenkins_plugins_{{plugin}}:
   jenkins_plugin.ensure:
     - name: {{plugin}}
 
     - requires:
       - jenkins_config
+      - sls: jenkins
+    - watch_in:
+      - service: jenkins
+
+{% endfor %}
+
+
+# Add projects
+{% for project in settings.get('projects', []) %}
+jenkins_project_{{project}}:
+  file.managed:
+    - makedirs: True
+    - name:     /var/lib/jenkins/jobs/{{project}}/config.xml
+    - source:   salt://data/jenkins/jobs/{{project}}/config.xml
+
+    - requires:
       - sls: jenkins
     - watch_in:
       - service: jenkins
