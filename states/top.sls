@@ -6,7 +6,8 @@ base:
     - ssh.keys.stefano@sintofan
 
   amber:
-    - jenkins_setup
+    - dev-tools.gcc-4-8
+    - dev-tools.jenkins_setup
 
   forest:
     - zabbix.front

@@ -45,6 +45,7 @@ jenkins_credentials_{{f}}:
 
     - group: jenkins
     - user:  jenkins
+    - mode:  0600
 
     - requires:
       - sls: jenkins
