@@ -6,7 +6,7 @@ base:
     - ssh.keys.stefano@sintofan
 
   amber:
-    - dev-tools.gcc-4-8
+    - dev-tools.all
     - dev-tools.jenkins_setup
 
   forest:
