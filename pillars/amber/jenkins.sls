@@ -29,7 +29,6 @@ jenkins-setup:
     - tasks
     - translation
     - warnings
-    - windows-slaves
 
   projects:
     - SnowFox
