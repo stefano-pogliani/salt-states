@@ -2,9 +2,11 @@
   {
     'default': {
       'pkg': 'vim',
-      'rc-path': '/etc/vim/vimrc'
+      'paths': {
+        'vimrc': '/etc/vim/vimrc'
+      }
     }
   },
   merge=salt['pillar.get']('vim:lookup'),
   default='default'
-)
+) %}

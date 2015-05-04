@@ -6,7 +6,7 @@ vim:
 
 vimrc:
   file.managed:
-    - name: {{ vim.rc-path }}
+    - name: {{ vim.paths.vimrc }}
     - source: salt://data/editors/vimrc
     - mode: 644
     - user: root
