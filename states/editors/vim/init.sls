@@ -4,15 +4,16 @@ vim:
   pkg.installed:
     - name: {{ vim.pkg }}
 
-vimrc:
+vimrc-patch:
   file.append:
     - makedirs: True
     - name: {{ vim.paths.vimrc }}
     - text: 'source {{ vim.paths.custom_vimrc }}'
 
     - require:
-      - pkg: {{ vim.pkg }}
+      - file: vimrc
 
+vimrc:
   file.managed:
     - name: {{ vim.paths.custom_vimrc }}
     - source: salt://data/editors/vim/vimrc
