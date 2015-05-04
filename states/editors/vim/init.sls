@@ -1,4 +1,4 @@
-{% from "editors/vim-defaults.jinja" import vim with context %}
+{% from "editors/vim/defaults.jinja" import vim with context %}
 
 vim:
   pkg.installed:
