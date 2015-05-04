@@ -4,7 +4,7 @@
   file.directory
 
 
-{% for bundle in salt['pillar.get']('vim.bundles', []) %}
+{% for bundle in salt['pillar.get']('vim:bundles', []) %}
 vim-bundle-{{ bundle.name }}:
   git.latest:
     - name: {{ bundle.repo }}
