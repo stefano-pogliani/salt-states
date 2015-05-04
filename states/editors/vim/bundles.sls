@@ -10,5 +10,5 @@ vim-bundle-{{ bundle.name }}:
     - name: {{ bundle.repo }}
     - target: {{ vim.paths.bundles }}/{{ bundle.name }}
     - require:
-      - file.directory: {{ vim.paths.bundles }}
+      - file: {{ vim.paths.bundles }}
 {% endfor %}
