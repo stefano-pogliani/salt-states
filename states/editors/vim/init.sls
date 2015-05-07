@@ -30,6 +30,7 @@ vim-pathogen:
   file.managed:
     - name: {{ vim.paths.autoload }}/pathogen.vim
     - source: salt://data/editors/vim/pathogen.vim
+    - makedirs: True
 
     - group: root
     - mode:  644
