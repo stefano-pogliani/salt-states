@@ -13,5 +13,5 @@ base:
     - lathander.zabbix
 
   'os:Debian':
-    - match: grains
+    - match: grain
     - grains.debian.vim
