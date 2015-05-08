@@ -4,6 +4,7 @@ base:
     - editors.vim
     #- iptables
     - ssh.keys.stefano@sintofan
+    - system.at
 
   amber:
     - dev-tools.all
@@ -20,4 +21,3 @@ base:
 
     # Temporarely use iptables only for one host to test it.
     - iptables
-
