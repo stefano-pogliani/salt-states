@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Support custom targets.
-salt "${1-'*'}" state.highstate
+salt "${1-*}" state.highstate

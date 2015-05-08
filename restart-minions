@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Support custom targets.
-salt "${1-'*'}" cmd.wait "echo service salt-minion restart | at now + 1 minute"
+salt "${1-*}" cmd.run "echo service salt-minion restart | at now + 1 minute"
