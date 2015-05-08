@@ -12,3 +12,6 @@ base:
     #- lathander.iptables.v4-rules
     - lathander.zabbix
 
+  'os:Debian':
+    - match: grains
+    - grains.debian.vim
