@@ -7,7 +7,7 @@ git:
   git.config:
     - name:  user.name
     - user:  {{ username }}
-    - value: {{ user.git-name }}
+    - value: {{ user.git_name }}
 
     - require:
       - pkg: git
@@ -16,7 +16,7 @@ git:
   git.config:
     - name:  user.email
     - user:  {{ username }}
-    - value: {{ user.git-email }}
+    - value: {{ user.git_email }}
 
     - require:
       - pkg: git
