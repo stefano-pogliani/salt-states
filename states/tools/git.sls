@@ -1,20 +1,23 @@
 git:
   pkg.installed
 
-git-user:
+
+{% for user in pillar.get('git:users', []) %}
+'git-user-{{ user.unix-name }}':
   git.config:
     - name:  user.name
-    - value: Stefano Pogliani
-    - is_global: True
+    - user:  {{ user.unix-name }}
+    - value: {{ user.git-name }}
 
     - require:
       - pkg: git
 
-git-email:
+'git-email-{{ user.unix-name }}':
   git.config:
     - name:  user.email
-    - value: stefano@spogliani.net
-    - is_global: True
+    - user:  {{ user.unix-name }}
+    - value: {{ user.git-email }}
 
     - require:
       - pkg: git
+{% endfor %}
