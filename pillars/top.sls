@@ -1,5 +1,6 @@
 base:
   '*':
+    - base.editors.vim
     - zabbix
 
   amber:
@@ -14,4 +15,4 @@ base:
 
   'os:Debian':
     - match: grain
-    - grains.debian.vim
+    - grains.debian.editors.vim
