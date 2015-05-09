@@ -1,7 +1,7 @@
 base:
   '*':
     - base.editors.vim
-    - base.editors.vim
+    - base.users.stefano
     - zabbix
 
   amber:
