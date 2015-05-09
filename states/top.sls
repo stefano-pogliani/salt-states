@@ -2,9 +2,13 @@ base:
   '*':
     - aliases.core
     - editors.vim
+    - editors.vim.bundles
+
     #- iptables
     - ssh.keys.stefano@sintofan
+
     - system.at
+    - system.tmux
 
   amber:
     - dev-tools.all
@@ -14,8 +18,6 @@ base:
     - zabbix.front
 
   lathander:
-    - pull-cfg
-
     - zabbix.agent
     - zabbix.server
 
