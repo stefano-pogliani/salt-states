@@ -2,10 +2,10 @@ tmux-package:
   pkg.installed:
     - name: tmux
 
-tmux-config:
+tmux-conf:
   file.managed:
     - name: /etc/tmux.conf
-    - source://salt/data/system/tmux.conf
+    - source: salt://data/tools/tmux.conf
 
     - group: root
     - mode:  644
