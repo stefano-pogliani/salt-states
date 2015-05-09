@@ -3,7 +3,7 @@ git:
 
 
 {% for (username, user) in salt['pillar.get']('users', {}).iteritems() %}
-'git-user-{{ username }}':
+'git-{{ username }}-username':
   git.config:
     - name:  user.name
     - user:  {{ username }}
@@ -12,7 +12,7 @@ git:
     - require:
       - pkg: git
 
-'git-email-{{ username }}':
+'git-{{ username }}-email':
   git.config:
     - name:  user.email
     - user:  {{ username }}
