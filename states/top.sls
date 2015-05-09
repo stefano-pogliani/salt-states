@@ -8,6 +8,7 @@ base:
     - ssh.keys.stefano@sintofan
 
     - system.at
+    - tools.git
     - tools.tmux
 
   amber:
