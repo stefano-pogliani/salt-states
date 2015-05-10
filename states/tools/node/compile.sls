@@ -3,6 +3,7 @@ node-compile-fetch:
   archive.extracted:
     - name: /tmp/salt-node-source
     - source: http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+    - archive_format: tar
 
 
 # Configure node.
@@ -22,7 +23,7 @@ node-compile-make:
     - name: 'make 2>&1 | tee make.log'
 
     - require:
-      - cmd.run: node-compile-config
+      - cmd: node-compile-config
 
 
 # Make install it.
@@ -32,7 +33,7 @@ node-compile-make-install:
     - name: 'make install 2>&1 | tee make-install.log'
 
     - require:
-      - cmd.run: node-compile-make
+      - cmd: node-compile-make
 
 # Bundle in an archive.
 node-compile-boundle:
@@ -41,4 +42,4 @@ node-compile-boundle:
     - name: 'tar -cvf node.tar.gz ./node 2>&1 | tee /tmp/salt-node-source/archive.log'
 
     - require:
-      - cmd.run: node-configure-make-install
+      - cmd: node-compile-make-install
