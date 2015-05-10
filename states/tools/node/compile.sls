@@ -2,7 +2,7 @@
 node-compile-fetch:
   archive.extracted:
     - name: /tmp/salt-node-source
-    - source: http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+    - source: salt://data/tools/node-v0.12.2.tar.gz
 
     # Configure archive extraction.
     - archive_format: tar
