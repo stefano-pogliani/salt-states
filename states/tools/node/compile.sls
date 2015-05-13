@@ -16,7 +16,7 @@ node-compile-fetch:
 node-compile-config:
   cmd.run:
     - cwd:  /tmp/salt-node-source
-    - name: './configure --prefix=/opt/node 2>&1 | tee configure.log'
+    - name: './configure --prefix=/opt/node --without-snapshot 2>&1 > configure.log'
 
     - require:
       - archive: node-compile-fetch
@@ -26,7 +26,7 @@ node-compile-config:
 node-compile-make:
   cmd.run:
     - cwd:  /tmp/salt-node-source
-    - name: 'make 2>&1 | tee make.log'
+    - name: 'make 2>&1 > make.log'
 
     - require:
       - cmd: node-compile-config
@@ -36,7 +36,7 @@ node-compile-make:
 node-compile-make-install:
   cmd.run:
     - cwd:  /tmp/salt-node-source
-    - name: 'make install 2>&1 | tee make-install.log'
+    - name: 'make install 2>&1 > make-install.log'
 
     - require:
       - cmd: node-compile-make
@@ -45,7 +45,7 @@ node-compile-make-install:
 node-compile-boundle:
   cmd.run:
     - cwd:  /opt
-    - name: 'tar -cvf node.tar.gz ./node 2>&1 | tee /tmp/salt-node-source/archive.log'
+    - name: 'tar -cvf node.tar.gz ./node 2>&1 > /tmp/salt-node-source/archive.log'
 
     - require:
       - cmd: node-compile-make-install
