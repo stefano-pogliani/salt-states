@@ -14,12 +14,20 @@ node-compile-fetch:
 
 # Configure node.
 node-compile-config:
-  cmd.run:
-    - cwd:  /tmp/salt-node-source
-    - name: './configure --prefix=/opt/node --without-snapshot 2>&1 > configure.log'
+  builders.configure:
+    - name: /tmp/salt-node-source
+    - options:
+      prefix: /opt/node
 
     - require:
       - archive: node-compile-fetch
+
+#  cmd.run:
+#    - cwd:  /tmp/salt-node-source
+#    - name: './configure --prefix=/opt/node --without-snapshot 2>&1 > configure.log'
+#
+#    - require:
+#      - archive: node-compile-fetch
 
 
 # Make it.
