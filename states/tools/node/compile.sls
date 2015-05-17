@@ -14,7 +14,7 @@ node-compile-fetch:
 
 # Configure node.
 node-compile-config:
-  builders.configure:
+  builders.make.configure:
     - name: /tmp/salt-node-source
     - options:
       prefix: /opt/node
