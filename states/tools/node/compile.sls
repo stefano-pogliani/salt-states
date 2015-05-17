@@ -1,3 +1,9 @@
+# Ensure source directory does not exist.
+node-compile-clear-source:
+  file.absent:
+    - name: /tmp/salt-node-source
+
+
 # Fetch and unpack source code.
 node-compile-fetch:
   archive.extracted:
@@ -11,6 +17,9 @@ node-compile-fetch:
 
     # Ensure archive is always extracted.
     - if_missing: some-file-that-does-not-make-sense
+
+    - require:
+      - file: node-compile-clear-source
 
 
 # Configure node.
@@ -31,7 +40,7 @@ node-compile-config:
 
 
 # Make it.
-#node-compile-make:
+node-compile-make:
 #  make.target:
 #    - name: /tmp/salt-node-source
 #    - require:
@@ -45,7 +54,7 @@ node-compile-config:
 
 
 # Make install it.
-#node-compile-make-install:
+node-compile-make-install:
 #  make.install:
 #    - name: /tmp/salt-node-source
 #    - require:
