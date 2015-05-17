@@ -5,7 +5,7 @@ import tempfile
 
 import pytest
 
-make = imp.load_source('make', 'states/_states/builders/make.py')
+make = imp.load_source('make', 'states/_states/make.py')
 
 
 @pytest.fixture()

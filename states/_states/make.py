@@ -2,6 +2,9 @@ from os import path
 
 from salt.exceptions import CommandExecutionError
 
+def __virtual__():
+  return 'make'
+
 
 def make_result(name, comment):
   return {
