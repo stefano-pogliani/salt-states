@@ -1,7 +1,15 @@
-# Ensure source directory does not exist.
-node-compile-clear-source:
+# Ensure source directory is clean.
+node-compile-clear-temp-dir:
   file.absent:
     - name: /tmp/salt-node-source
+
+node-compile-create-temp-dir:
+  file.directory:
+    - name:  /tmp/salt-node-source
+    - user:  root
+    - group: root
+    - require:
+      - file: node-compile-clear-temp-dir
 
 
 # Fetch and unpack source code.
@@ -19,7 +27,7 @@ node-compile-fetch:
     - if_missing: some-file-that-does-not-make-sense
 
     - require:
-      - file: node-compile-clear-source
+      - file: node-compile-create-temp-dir
 
 
 # Configure node.
