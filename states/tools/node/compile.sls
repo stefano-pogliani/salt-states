@@ -1,15 +1,10 @@
 # Ensure source directory is clean.
-node-compile-clear-temp-dir:
-  file.absent:
-    - name: /tmp/salt-node-source
-
-node-compile-create-temp-dir:
+node-compile-directory:
   file.directory:
+    - clean: True
     - name:  /tmp/salt-node-source
     - user:  root
     - group: root
-    - require:
-      - file: node-compile-clear-temp-dir
 
 
 # Fetch and unpack source code.
