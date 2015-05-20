@@ -8,8 +8,13 @@ base:
     - ssh.keys.stefano@sintofan
 
     - system.at
+    - tools.coding.gcc.install
     - tools.git
     - tools.tmux
+
+  'os:Debian':
+    - match: grain
+    - tools.coding.gcc.alternative
 
   amber:
     - dev-tools.all

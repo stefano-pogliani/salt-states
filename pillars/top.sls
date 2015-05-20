@@ -4,6 +4,10 @@ base:
     - base.users.stefano
     - zabbix
 
+  'os:Debian':
+    - match: grain
+    - grains.debian.editors.vim
+
   amber:
     - amber.jenkins
 
@@ -13,7 +17,3 @@ base:
   lathander:
     #- lathander.iptables.v4-rules
     - lathander.zabbix
-
-  'os:Debian':
-    - match: grain
-    - grains.debian.editors.vim
