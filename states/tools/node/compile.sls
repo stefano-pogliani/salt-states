@@ -22,7 +22,7 @@ node-compile-fetch:
     - if_missing: some-file-that-does-not-make-sense
 
     - require:
-      - file: node-compile-create-temp-dir
+      - file: node-compile-directory
 
 
 # Configure node.
