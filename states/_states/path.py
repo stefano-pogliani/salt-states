@@ -14,12 +14,21 @@ export PATH
 """
 
 # Global variables.
+flushed_paths    = False
 paths_to_include = set()
 
 
 # Managed file.
 def flush(name):
   """Flushes the changes to the PATH variable that were cumulated."""
+  if flushed_paths:
+    return {
+        "name":    name,
+        "changes": {},
+        "result":  False,
+        "comment": "Cannot flush twice".
+    }
+
   # Compute the filename for the script.
   filename = DEFAULT_PROFILE_PATH
 
@@ -59,6 +68,7 @@ def flush(name):
       comment = "Updated profile file."
       result  = True
 
+  flushed_paths = True
   return {
       "name":    name,
       "result":  result,

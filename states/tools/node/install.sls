@@ -20,7 +20,3 @@ node-extend-path:
 
     - require_in:
       - path: salt_path_profile
-
-
-salt_path_profile:
-  path.flush
