@@ -1,6 +1,3 @@
-from salt.states import file
-
-
 # Constants.
 DEFAULT_PROFILE_PATH = "/etc/profile.d/salt-path.sh"
 MANAGED_FILE_STATE = "salt_managed_path"
@@ -16,6 +13,14 @@ export PATH
 # Global variables.
 managed_file_added = False
 paths_to_include = set()
+
+
+# Import file state.
+def _import_file_state():
+  from salt.state import file
+  file.__salt__ = __salt__
+  file.__opts__ = __opts__
+  return file
 
 
 # Managed file.
@@ -35,6 +40,7 @@ def _ensure_managed_file():
   contents = PROFILE_TEMPLATE.format(PATHS=rendered_paths)
 
   # Create the managed file.
+  file = _import_file_state()
   file.managed(filename, contents=contents)
   managed_file_added = True
 
@@ -59,7 +65,7 @@ def include(name, path=None):
 
   # Return.
   return {
-      "name":    name
+      "name":    name,
       "result":  True,
       "comment": "Path '{0}' marked for inclusion.".format(path),
       "changes": { "added": path }
