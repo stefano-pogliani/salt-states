@@ -1,3 +1,6 @@
+import os
+
+
 # Constants.
 DEFAULT_PROFILE_PATH = "/etc/profile.d/salt-path.sh"
 MANAGED_FILE_STATE = "salt_managed_path"
@@ -11,25 +14,12 @@ export PATH
 """
 
 # Global variables.
-managed_file_added = False
 paths_to_include = set()
 
 
-# Import file state.
-def _import_file_state():
-  from salt.state import file
-  file.__salt__ = __salt__
-  file.__opts__ = __opts__
-  return file
-
-
 # Managed file.
-def _ensure_managed_file():
-  # Only create managed file once.
-  global managed_file_added
-  if managed_file_added:
-    return
-
+def flush(name):
+  """Flushes the changes to the PATH variable that were cumulated."""
   # Compute the filename for the script.
   filename = DEFAULT_PROFILE_PATH
 
@@ -39,10 +29,42 @@ def _ensure_managed_file():
   ])
   contents = PROFILE_TEMPLATE.format(PATHS=rendered_paths)
 
-  # Create the managed file.
-  file = _import_file_state()
-  file.managed(filename, contents=contents)
-  managed_file_added = True
+  # Get ready to act/test.
+  comment = ""
+  result  = False
+  changes = {
+      "new": content,
+      "old": None
+  }
+
+  # Get current content of the script file.
+  if os.path.exists(filename):
+    with open(filename) as f:
+      changes["old"] = f.read()
+
+  # Skip if nothing changed.
+  if changes["old"] == changes["new"]:
+    comment = "Nothing to change."
+    result  = True
+
+  # Test mode does not write.
+  elif __opts__["test"]:
+    result  = None
+    comment = "Profile file not written."
+
+  # Write changes.
+  else:
+    with open(filename, "w") as f:
+      f.write(contents)
+      comment = "Updated profile file."
+      result  = True
+
+  return {
+      "name":    name,
+      "result":  result,
+      "comment": comment,
+      "changes": changes
+  }
 
 
 # Append the new paths.
@@ -56,17 +78,14 @@ def include(name, path=None):
   path
     The path to include in $PATH on the managed system.
   """
-  # Ensure file exists.
-  _ensure_managed_file()
+  changes = {}
+  if path not in paths_to_include:
+    changes["new"] = path
 
-  # Append the path to the set.
-  added = path not in paths_to_include
   paths_to_include.add(path)
-
-  # Return.
   return {
       "name":    name,
       "result":  True,
       "comment": "Path '{0}' marked for inclusion.".format(path),
-      "changes": { "added": path }
+      "changes": changes
   }
