@@ -33,7 +33,7 @@ def flush(name):
   comment = ""
   result  = False
   changes = {
-      "new": content,
+      "new": contents,
       "old": None
   }
 
