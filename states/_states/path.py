@@ -14,19 +14,20 @@ export PATH
 """
 
 # Global variables.
-flushed_paths    = False
-paths_to_include = set()
+class Globals(object):
+  flushed_paths    = False
+  paths_to_include = set()
 
 
 # Managed file.
 def flush(name):
   """Flushes the changes to the PATH variable that were cumulated."""
-  if flushed_paths:
+  if Globals.flushed_paths:
     return {
         "name":    name,
         "changes": {},
         "result":  False,
-        "comment": "Cannot flush twice".
+        "comment": "Cannot flush twice."
     }
 
   # Compute the filename for the script.
@@ -34,7 +35,7 @@ def flush(name):
 
   # Fill in the template.
   rendered_paths = '\n'.join([
-      'PATH=$PATH:' + path for path in paths_to_include
+      'PATH=$PATH:' + path for path in Globals.paths_to_include
   ])
   contents = PROFILE_TEMPLATE.format(PATHS=rendered_paths)
 
@@ -68,7 +69,7 @@ def flush(name):
       comment = "Updated profile file."
       result  = True
 
-  flushed_paths = True
+  Globals.flushed_paths = True
   return {
       "name":    name,
       "result":  result,
@@ -89,10 +90,10 @@ def include(name, path=None):
     The path to include in $PATH on the managed system.
   """
   changes = {}
-  if path not in paths_to_include:
+  if path not in Globals.paths_to_include:
     changes["new"] = path
 
-  paths_to_include.add(path)
+  Globals.paths_to_include.add(path)
   return {
       "name":    name,
       "result":  True,

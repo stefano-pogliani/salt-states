@@ -1,3 +1,6 @@
+include:
+  - global
+
 # Unpack archive into /opt
 node-install:
   archive.extracted:

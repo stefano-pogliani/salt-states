@@ -1,13 +1,14 @@
 base:
   '*':
     - aliases.core
+    - system.at
+
     - editors.vim
     - editors.vim.bundles
 
     #- iptables
     - ssh.keys.stefano@sintofan
 
-    - system.at
     - tools.coding.gcc.install
     - tools.git
     - tools.tmux
@@ -19,6 +20,7 @@ base:
   amber:
     - dev-tools.all
     - dev-tools.jenkins_setup
+    - tools.node.install
 
   forest:
     - zabbix.front
