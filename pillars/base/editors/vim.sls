@@ -8,3 +8,5 @@ vim:
       repo: https://github.com/pangloss/vim-javascript.git
     - name: vim-markdown
       repo: https://github.com/plasticboy/vim-markdown
+    - name: salt-vim
+      repo: https://github.com/saltstack/salt-vim
