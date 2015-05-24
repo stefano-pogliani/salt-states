@@ -8,6 +8,7 @@ git:
     - name:  user.name
     - user:  {{ username }}
     - value: {{ user.git_name }}
+    - is_global: True
 
     - require:
       - pkg: git
@@ -17,6 +18,7 @@ git:
     - name:  user.email
     - user:  {{ username }}
     - value: {{ user.git_email }}
+    - is_global: True
 
     - require:
       - pkg: git
