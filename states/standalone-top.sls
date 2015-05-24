@@ -9,3 +9,4 @@ base:
 
     - tools.git
     - tools.tmux
+    - tools.node.install.from_package

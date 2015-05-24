@@ -31,7 +31,7 @@ def flush(name):
     }
 
   # Compute the filename for the script.
-  filename = DEFAULT_PROFILE_PATH
+  filename = __salt__["pillar.get"]("system:path-profile", DEFAULT_PROFILE_PATH)
 
   # Fill in the template.
   rendered_paths = '\n'.join([

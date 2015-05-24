@@ -20,7 +20,7 @@ base:
   amber:
     - dev-tools.all
     - dev-tools.jenkins_setup
-    - tools.node.install
+    - tools.node.install.from_archive
 
   forest:
     - zabbix.front
