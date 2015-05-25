@@ -5,5 +5,5 @@
 rpmfogre-fedora-22:
   pkg.installed:
     - sources:
-      - {{ rpmforge_free_source }}
-      - {{ rpmforge_nonfree_source }}
+      - rpmfusion-free-release:    {{ rpmforge_free_source }}
+      - rpmfusion-nonfree-release: {{ rpmforge_nonfree_source }}
