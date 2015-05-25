@@ -6,8 +6,9 @@ base:
 
   'os:Debian':
     - match: grain
-    - grains.debian.pkg_names
     - grains.debian.editors.vim
+    - grains.debian.pkg_names
+    - grains.debian.system
 
   amber:
     - amber.jenkins
