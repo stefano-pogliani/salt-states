@@ -1,6 +1,6 @@
 grunt-npm-install:
   npm.installed:
-    - name: grunt
+    - name: grunt-cli
     - require:
       {% if salt["pillar.get"]("node:source", "pkg") == "pkg" %}
       - pkg: node-install
