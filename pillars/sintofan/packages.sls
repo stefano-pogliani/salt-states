@@ -1,3 +1,3 @@
 system:
   insall-packages:
-    google-chrome-stable: google-chrome-repo
+    google-chrome-stable: "pkgrepo: google-chrome-repo"
