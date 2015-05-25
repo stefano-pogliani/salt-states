@@ -21,6 +21,7 @@ base:
     - dev-tools.all
     - dev-tools.jenkins_setup
     - tools.node.install.from_archive
+    - tools.coding.grunt
 
   forest:
     - zabbix.front
