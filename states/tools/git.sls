@@ -7,7 +7,7 @@ git:
   git.config:
     - name:  user.name
     - user:  {{ username }}
-    - value: {{ user.git_name }}
+    - value: "{{ user.git_name }}"
     - is_global: True
 
     - require:
@@ -17,7 +17,7 @@ git:
   git.config:
     - name:  user.email
     - user:  {{ username }}
-    - value: {{ user.git_email }}
+    - value: "{{ user.git_email }}"
     - is_global: True
 
     - require:
