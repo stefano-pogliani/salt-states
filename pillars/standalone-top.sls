@@ -5,3 +5,4 @@ base:
 
     - sintofan.editors.vim
     - sintofan.pkg_names
+    - sintofan.packages

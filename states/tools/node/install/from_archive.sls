@@ -1,7 +1,7 @@
 {% set opt_path = salt["pillar.get"]("node:opt_path", "/opt/node") %}
 
 include:
-  - global
+  - path-profile
 
 
 # Ensure {{ opt_path }} exists.

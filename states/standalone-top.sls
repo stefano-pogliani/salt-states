@@ -1,5 +1,6 @@
 base:
   '*':
+    - global
     - aliases.core
 
     - editors.vim

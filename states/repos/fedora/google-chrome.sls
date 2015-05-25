@@ -1,4 +1,4 @@
-google-chrome-fedora-repo:
+google-chrome-repo:
   pkgrepo.managed:
     - humanname: google-chrome
     - name: google-chrome
