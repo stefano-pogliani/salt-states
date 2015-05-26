@@ -1,2 +1,2 @@
 node:
-  source: archive
+  source: path

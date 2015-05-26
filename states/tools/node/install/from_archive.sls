@@ -13,7 +13,7 @@ node-opt-dir:
 
 
 # Unpack archive into {{ opt_path }}
-node-install:
+node-unpack:
   archive.extracted:
     - name: {{ opt_path }}
     - source: salt://data/tools/iojs-bin-v2.0.2.tar.gz
@@ -26,13 +26,26 @@ node-install:
       - file: node-opt-dir
 
 
+# Symlink stuff in /usr/bin or daemons won't find them.
+# Use alternatives to manage symlinks.
+{% for bin in ["node", "npm"] %}
+node-alternative-{{ bin }}:
+  alternatives.install:
+    - name: {{ bin }}
+    - link: /usr/bin/{{ bin }}
+    - path: {{ opt_path }}/bin/{{ bin }}
+    - priority: 100
+
+{% endfor %}
+
+
 # Add new node to path.
-node-extend-path:
+node-install:
   path.include:
     - path: {{ opt_path }}/bin
 
     - require:
-      - archive: node-install
+      - archive: node-unpack
 
     - require_in:
       - path: salt_path_profile
