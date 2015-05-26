@@ -1,7 +1,6 @@
 jenkins:
   home: /var/lib/jenkins
 
-jenkins-setup:
   plugins:
     - analysis-core
     - ant

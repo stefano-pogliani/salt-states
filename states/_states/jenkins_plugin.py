@@ -66,6 +66,9 @@ def ensure(home="/var/lib/jenkins", name=None, update=True, **kwargs):
     "result":  True
   }
 
+  # TODO: move to helper function to install a plugin from name.
+  # TODO: support dependency resolution.
+
   # Check if plugin is available and fetch the version.
   latest_version = _cache.get_latest_version(name)
   log.debug("Found plugin {name}, version {version}".format(

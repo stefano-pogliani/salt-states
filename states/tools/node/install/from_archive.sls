@@ -35,6 +35,8 @@ node-alternative-{{ bin }}:
     - link: /usr/bin/{{ bin }}
     - path: {{ opt_path }}/bin/{{ bin }}
     - priority: 100
+    - require:
+      - archive: node-unpack
 
 {% endfor %}
 

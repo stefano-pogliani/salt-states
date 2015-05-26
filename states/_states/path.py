@@ -54,6 +54,7 @@ def flush(name):
 
   # Skip if nothing changed.
   if changes["old"] == changes["new"]:
+    changes = {}
     comment = "Nothing to change."
     result  = True
 
