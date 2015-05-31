@@ -1,5 +1,4 @@
 # If needed, add grains.filter_by here and reference this in defaults.
-
 {% set defaults = {
   'paths': {
     'ca':   '/etc/openvpn/ca.crt',
@@ -25,6 +24,6 @@
 
 {% set settings = salt["pillar.get"](
   "openvpn:client",
-  defaults=defaults,
+  default=defaults,
   merge=True
 ) %}

@@ -21,7 +21,7 @@ openvpn-client-certs-ca:
 
 openvpn-client-certs-cert:
   - file.managed:
-    - name: {{ settigns.paths.cert }}
+    - name: {{ settings.paths.cert }}
     - contents_pillar: {{ settings.sources.cert }}
 
     - mkdirs: True
