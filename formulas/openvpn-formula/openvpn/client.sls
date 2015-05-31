@@ -7,7 +7,7 @@ include:
 
 # Certificates.
 openvpn-client-certs-ca:
-  - file.managed:
+  file.managed:
     - name:   {{ settings.paths.ca }}
     - source: {{ settings.sources.ca }}
 
@@ -20,7 +20,7 @@ openvpn-client-certs-ca:
       - pkg: {{ pkg_name }}
 
 openvpn-client-certs-cert:
-  - file.managed:
+  file.managed:
     - name: {{ settings.paths.cert }}
     - contents_pillar: {{ settings.sources.cert }}
 
@@ -33,7 +33,7 @@ openvpn-client-certs-cert:
       - pkg: {{ pkg_name }}
 
 openvpn-client-certs-key:
-  - file.managed:
+  file.managed:
     - name: {{ settings.paths.key }}
     - contents_pillar: {{ settings.sources.key }}
 
@@ -48,7 +48,7 @@ openvpn-client-certs-key:
 
 # Configuration and scripts.
 openvpn-client-config:
-  - file.managed:
+  file.managed:
     - name: {{ settings.paths.conf }}
     - source:   salt://openvpn/client.conf
     - template: jinja
@@ -77,7 +77,7 @@ openvpn-client-config:
 
 
 openvpn-client-script-down:
-  - file.managed:
+  file.managed:
     - name:   {{ settings.paths.down }}
     - source: salt://openvpn/client.down
 
@@ -91,7 +91,7 @@ openvpn-client-script-down:
 
 
 openvpn-client-script-uo:
-  - file.managed:
+  file.managed:
     - name:   {{ settings.paths.up }}
     - source: salt://openvpn/client.up
 
