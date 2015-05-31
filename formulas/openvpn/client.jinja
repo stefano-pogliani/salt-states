@@ -1,0 +1,30 @@
+# If needed, add grains.filter_by here and reference this in defaults.
+
+{% set defaults = {
+  'paths': {
+    'ca':   '/etc/openvpn/ca.crt',
+    'cert': '/etc/openvpn/client.crt',
+    'conf': '/etc/openvpn/client.conf',
+    'key':  '/etc/openvpn/client.key',
+
+    'down': '/etc/openvpn/client.down',
+    'up':   '/etc/openvpn/client.up'
+  },
+
+  'sources': {
+    'ca':   'salt://openvpn/ca.crt',
+    'cert': 'openvpn:client:priv:cert',
+    'key':  'openvpn:client:priv:key'
+  },
+
+  'server': {
+    'host': None,
+    'port': None
+  }
+} %}
+
+{% set settings = salt["pillar.get"](
+  "openvpn:client",
+  defaults=defaults,
+  merge=True
+) %}

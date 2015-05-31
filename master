@@ -508,6 +508,7 @@ file_roots:
 pillar_roots:
   base:
     - /etc/salt/pillars
+    - /etc/salt/priv/pillars
 
 #ext_pillar:
 #  - hiera: /etc/hiera.yaml
