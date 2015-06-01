@@ -10,7 +10,7 @@ ssh-sintofan-stefano-pub:
     - contents_pillar: "users:keys:stefano:public"
     - user:  stefano
     - group: stefano
-    - mode:  600
+    - mode:  644
 
     - require:
       - file: ssh-sintofan-stefano-dir
