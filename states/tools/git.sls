@@ -2,7 +2,7 @@ git:
   pkg.installed
 
 
-{% for (username, user) in salt['pillar.get']('users', {}).iteritems() %}
+{% for (username, user) in salt["pillar.get"]("users:info", {}).iteritems() %}
 'git-{{ username }}-username':
   git.config:
     - name:  user.name
