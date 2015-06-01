@@ -1,23 +1,23 @@
 system:
   insall-packages:
     # GUI:
-    filezilla: None
-    gimp: None
+    filezilla: ~
+    gimp: ~
     google-chrome-stable: "pkgrepo: google-chrome-repo"
-    gparted: None
-    inkscape: None
-    meld: None
-    tiled: None
+    gparted: ~
+    inkscape: ~
+    meld: ~
+    tiled: ~
 
     # Games:
-    frozen-bubble: None
-    hexglass: None
+    frozen-bubble: ~
+    hexglass: ~
     vbam-gtk: "pkg: rpmfogre-fedora-22"
 
     # Libs:
-    lame: None
+    lame: ~
 
     # Tools:
-    doxygen: None
-    fedup: None
-    hplip-libs: None
+    doxygen: ~
+    fedup: ~
+    hplip-libs: ~

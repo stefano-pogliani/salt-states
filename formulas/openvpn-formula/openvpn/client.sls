@@ -90,7 +90,7 @@ openvpn-client-script-down:
       - pkg: {{ pkg_name }}
 
 
-openvpn-client-script-uo:
+openvpn-client-script-up:
   file.managed:
     - name:   {{ settings.paths.up }}
     - source: salt://openvpn/client.up
