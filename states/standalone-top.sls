@@ -23,23 +23,25 @@ base:
     # Formulas
     - openvpn.client
 
-# TODO states:
+# TODO for work:
+# - ssh.github hack for work
+# - netbeans (write state? http://dlc-cdn.sun.com/netbeans/8.0.2/final/bundles/)
+# - netbeans.cofigure
+# - skype
 # - dictionary for vim
+
+
+# TODO states:
 # - evolution emails
 # - filezilla.configure
 # - firewall rules
-# - ssh.github hack for work
 # - kernel ratainment policy
 # - printer configuration
-# - netbeans (write state? http://dlc-cdn.sun.com/netbeans/8.0.2/final/bundles/)
-# - netbeans.cofigure
 
 # TODO forulas:
-# - openvpn & configuration
 # - texlive && packages
 
 # TODO install:
 # - chrome.plugins
 # - firefox.plugins
-# - skype
 # - lua (& dev stuff)

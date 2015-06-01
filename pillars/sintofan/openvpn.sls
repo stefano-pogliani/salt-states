@@ -3,7 +3,7 @@ openvpn:
     paths:
       ca:   /etc/openvpn/gayr-ca.crt
       cert: /etc/openvpn/sintofan.crt
-      conf: /etc/openvpn/spvpn
+      conf: /etc/openvpn/spvpn.conf
       key:  /etc/openvpn/sintofan.key
 
     sources:

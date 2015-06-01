@@ -14,7 +14,7 @@ openvpn-client-certs-ca:
     - mkdirs: True
     - user:   root
     - group:  root
-    - mode:   755
+    - mode:   644
 
     - require:
       - pkg: {{ pkg_name }}
@@ -27,7 +27,7 @@ openvpn-client-certs-cert:
     - mkdirs: True
     - user:   root
     - group:  root
-    - mode:   755
+    - mode:   644
 
     - require:
       - pkg: {{ pkg_name }}
@@ -40,7 +40,7 @@ openvpn-client-certs-key:
     - mkdirs: True
     - user:   root
     - group:  root
-    - mode:   755
+    - mode:   600
 
     - require:
       - pkg: {{ pkg_name }}
