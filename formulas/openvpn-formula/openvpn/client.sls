@@ -64,8 +64,8 @@ openvpn-client-config:
       ca:   {{ settings.paths.ca }}
       cert: {{ settings.paths.cert }}
       key:  {{ settings.paths.key }}
-      down-script: {{ settings.paths.down }}
-      up-script:   {{ settings.paths.up }}
+      down_script: {{ settings.paths.down }}
+      up_script:   {{ settings.paths.up }}
 
     - require:
       - pkg:  {{ pkg_name }}
