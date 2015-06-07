@@ -1,3 +1,3 @@
 install_netbeans_802:
   netbeans.install:
-    - name: 8.0.2
+    - version: 8.0.2
