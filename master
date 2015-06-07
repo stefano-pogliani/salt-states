@@ -391,6 +391,7 @@ timeout: 3600
 
 file_roots:
   base:
+    - /etc/salt/extentions
     - /etc/salt/states
     - /etc/salt/priv/data
     - /etc/salt/formulas/jenkins-formula

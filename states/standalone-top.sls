@@ -24,11 +24,11 @@ base:
     - openvpn.client
 
 # TODO for work:
-# - ssh.github hack for work
-# - netbeans (write state? http://dlc-cdn.sun.com/netbeans/8.0.2/final/bundles/)
+# - netbeans (write state? http://download.netbeans.org/netbeans/8.0.2/final/bundles)
 # - netbeans.cofigure
 # - skype
 # - dictionary for vim
+# - WORK TOP FILE.
 
 
 # TODO states:
