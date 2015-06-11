@@ -38,4 +38,4 @@ netbeans_802_stop:
   netbeans.stop:
     - version: "8.0.2"
     - require:
-      - netbeans: netbeans_802_plugins
+      - netbeans: netbeans_802_start
