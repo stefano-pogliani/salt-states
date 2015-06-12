@@ -4,7 +4,9 @@
 {% set keys = salt["pillar.get"]("users:keys") %}
 {% set users = salt["pillar.get"]("ssh:authorised") %}
 
-{% for local_user, authorised_user in users.iteritems() %}
+{% for local_user, authorised_users in users.iteritems() %}
+{% for authorised_user in authorised_users %}
+
 {% set key = keys.get(authorised_user) %}
 ssh-authorise-{{ authorised_user }}-for-{{ local_user }}:
   ssh_auth.present:
@@ -12,5 +14,5 @@ ssh-authorise-{{ authorised_user }}-for-{{ local_user }}:
     - name: {{ key.public.key }}
     - user: {{ local_user }}
 
-
+{% endfor %}
 {% endfor %}
