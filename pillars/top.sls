@@ -12,6 +12,8 @@ base:
 
   amber:
     - amber.jenkins
+    - keys.ssh.users.root.amber
+    - keys.ssh.users.root.amber.private
 
   #forest:
   #  - forest.zabbix
@@ -19,3 +21,5 @@ base:
   lathander:
     #- lathander.iptables.v4-rules
     - lathander.zabbix
+    - keys.ssh.users.root.lathander
+    - keys.ssh.users.root.lathander.private

@@ -26,7 +26,7 @@ ssh-priv-{{ comment }}:
     - mode: 600
 
     - require:
-      - file: ssh-dir-{{ key.comment }}
+      - file: ssh-dir-{{ comment }}
 
 
 {% set public = key.public %}
@@ -38,7 +38,7 @@ ssh-pub-{{ comment }}:
     - mode: 600
 
     - require:
-      - file: ssh-dir-{{ key.comment }}
+      - file: ssh-dir-{{ comment }}
 
 {% endif %}
 {% endfor %}
