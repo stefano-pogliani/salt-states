@@ -10,8 +10,7 @@ base:
     - repos.fedora.rpmforge
 
     - ssh.keys.deploy
-    #- ssh.keys.sintofan.stefano.priv
-    #- ssh.keys.sintofan.stefano.pub
+    - ssh.keys.present
 
     - tools.coding.grunt
     - tools.coding.gcc.install

@@ -1,0 +1,4 @@
+ssh:
+  authorised:
+    sterfano:
+      - amber

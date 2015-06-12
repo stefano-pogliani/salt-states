@@ -9,6 +9,10 @@ base:
 
     - sintofan.openvpn
 
+    # Allowed remote SSH users.
+    - keys.ssh.users.amber
+    - sintofan.allowed-keys
+
     # Private stuff.
     - keys.ssh.users.stefano
     - keys.ssh.users.stefano.private
