@@ -20,7 +20,7 @@ jenkins_credentials:
     - user:  {{ user }}
 
     - require:
-      - sls: jenkins
+      - pkg: jenkins
     - watch_in:
       - service: jenkins
 
@@ -38,7 +38,7 @@ jenkins_credentials_{{ name }}:
     - mode:  0600
 
     - require:
-      - sls: jenkins
+      - pkg: jenkins
     - watch_in:
       - service: jenkins
 
@@ -51,7 +51,7 @@ jenkins_plugins_{{ plugin }}:
   jenkins_plugin.ensure:
     - name: {{ plugin }}
     - require:
-      - sls: jenkins
+      - pkg: jenkins
     - watch_in:
       - service: jenkins
 

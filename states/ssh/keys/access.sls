@@ -10,6 +10,7 @@
 {% set key = keys.get(authorised_id) %}
 ssh-authorise-{{ authorised_id }}-for-{{ local_user }}:
   ssh_auth.present:
+    - comment: {{ key.public.comment }}
     - enc:  {{ key.public.enc }}
     - name: {{ key.public.key }}
     - user: {{ local_user }}

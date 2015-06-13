@@ -24,12 +24,12 @@ base:
     - tools.coding.jenkins.install
     - tools.node.install.from_archive
 
-  forest:
-    - zabbix.front
+  #forest:
+  #    - zabbix.front
 
   lathander:
-    - zabbix.agent
-    - zabbix.server
+    #- zabbix.agent
+    #- zabbix.server
 
     # Temporarely use iptables only for one host to test it.
     - iptables
