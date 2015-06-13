@@ -1,4 +1,4 @@
-grunt-npm-install:
+grunt-cli-install:
   {% if salt["pillar.get"]("node:grunt:cli-from-npm") %}
   npm.installed:
     - name: grunt-cli

@@ -13,6 +13,7 @@
 {% set comment = key.public.comment %}
 ssh-dir-{{ comment }}:
   file.directory:
+    - makedirs: True
     - name:  {{ path }}
     - user:  {{ user }}
     - group: {{ user }}

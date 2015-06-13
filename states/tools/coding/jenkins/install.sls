@@ -46,12 +46,20 @@ jenkins_credentials_{{ name }}:
 
 
 # Install/update plugins
+jenkins_plugins_mkdir:
+  file.directory:
+    - name: "{{ home }}/plugins"
+    - group: {{ group }}
+    - user:  {{ user}}
+    - require:
+      - pkg: jenkins
+
 {% for plugin in plugins %}
 jenkins_plugins_{{ plugin }}:
   jenkins_plugin.ensure:
     - name: {{ plugin }}
     - require:
-      - pkg: jenkins
+      - file: jenkins_plugins_mkdir
     - watch_in:
       - service: jenkins
 

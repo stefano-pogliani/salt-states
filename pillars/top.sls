@@ -16,6 +16,7 @@ base:
 
   amber:
     - amber.jenkins
+    - amber.packages
 
     # Relevant SSH keys
     - keys.ssh.users.amber
