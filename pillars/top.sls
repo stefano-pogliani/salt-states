@@ -1,8 +1,12 @@
 base:
   '*':
     - base.editors.vim
-    - base.users.stefano
     - zabbix
+
+    # Deploy my user and public SSH key to all systems
+    - base.users.allowed-users
+    - base.users.stefano
+    - keys.ssh.users.stefano
 
   'os:Debian':
     - match: grain
@@ -12,14 +16,19 @@ base:
 
   amber:
     - amber.jenkins
-    - keys.ssh.users.root.amber
-    - keys.ssh.users.root.amber.private
 
-  #forest:
+    # Relevant SSH keys
+    - keys.ssh.users.amber
+    - keys.ssh.users.amber.private
+
+  forest:
+    - forest.allowed-users
   #  - forest.zabbix
 
   lathander:
     #- lathander.iptables.v4-rules
     - lathander.zabbix
-    - keys.ssh.users.root.lathander
-    - keys.ssh.users.root.lathander.private
+
+    # Relevant SSH keys
+    #- keys.ssh.users.lathander
+    #- keys.ssh.users.lathander.private

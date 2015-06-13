@@ -8,9 +8,7 @@ base:
 
     - repos.fedora.google-chrome
     - repos.fedora.rpmforge
-
     - ssh.keys.deploy
-    - ssh.keys.present
 
     - tools.coding.grunt
     - tools.coding.gcc.install

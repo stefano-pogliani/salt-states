@@ -4,7 +4,8 @@
 {% set keys = salt["pillar.get"]("users:keys") %}
 
 # For each user look up the key information.
-{% for user, key in keys.iteritems() %}
+{% for id, key in keys.iteritems() %}
+{% set user = key.get("user", id) %}
 {% set path = key.get("path", "/home/" + user + "/.ssh") %}
 
 # Only deply the key if the private one is available.
@@ -21,7 +22,7 @@ ssh-dir-{{ comment }}:
 ssh-priv-{{ comment }}:
   file.managed:
     - name: {{ path }}/{{ key.get("name", "id_rsa") }}
-    - contents_pillar: "users:keys:{{ user }}:private"
+    - contents_pillar: "users:keys:{{ id }}:private"
     - user: {{ user }}
     - mode: 600
 

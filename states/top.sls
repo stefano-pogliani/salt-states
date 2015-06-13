@@ -7,7 +7,8 @@ base:
     - editors.vim.bundles
 
     #- iptables
-    - ssh.keys.stefano@sintofan
+    - ssh.keys.access
+    - ssh.keys.deploy
 
     - tools.coding.gcc.install
     - tools.git
