@@ -1,4 +1,4 @@
 ssh:
-  allowed-users:
+  authorised:
     stefano:
       - stefano

@@ -1,5 +1,5 @@
 ssh:
-  allowed-users:
+  authorised:
     git:
       - amber_jenkins
       - lathander
