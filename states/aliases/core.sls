@@ -1,9 +1,5 @@
 common_aliases:
-  file.append:
-    #- group: root
-    #- mode:  0644
-    #- user:  root
-
-    - name: /etc/profile.d/common_aliases.sh
+  file.managed:
+    - name: /etc/profile.d/salt-common-aliases.sh
     - source: salt://data/aliases/core.sh
 
