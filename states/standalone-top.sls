@@ -8,6 +8,8 @@ base:
 
     - repos.fedora.google-chrome
     - repos.fedora.rpmforge
+    - repos.fedora.skype
+
     - ssh.keys.deploy
 
     - tools.coding.grunt
@@ -22,9 +24,6 @@ base:
     - openvpn.client
 
 # TODO for work:
-# - skype
-#   http://www.if-not-true-then-false.com/2012/install-skype-on-fedora-centos-red-hat-rhel-scientific-linux-sl/comment-page-3/
-#   http://negativo17.org/skype-and-skype-pidgin-plugin/
 # - dictionary for vim
 # - WORK TOP FILE.
 # - WORK PRIVATE KEYS.
