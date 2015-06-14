@@ -20,10 +20,14 @@ base:
 
     # Relevant SSH keys
     - keys.ssh.users.amber
+    - keys.ssh.users.amber.jenkins
     - keys.ssh.users.amber.private
+    - keys.ssh.users.amber.jenkins.private
 
   forest:
     - forest.allowed-users
+    - keys.ssh.users.amber.jenkins
+    - keys.ssh.users.lathander
   #  - forest.zabbix
 
   lathander:
