@@ -26,10 +26,12 @@ jenkins_credentials:
 
 
 # SSH files.
+# Added by pillar top and ssh.depoy as all other keys.
+{#
 {% for name in ['id_rsa', 'id_rsa.pub', 'known_hosts'] %}
 jenkins_credentials_{{ name }}:
-  file.managed:
-    - makedirs: True
+    file.managed:
+      - makedirs: True
     - name:     {{ home }}/.ssh/{{ name }}
     - source:   salt://priv-data/tools/coding/jenkins/ssh/{{ name }}
 
@@ -43,6 +45,7 @@ jenkins_credentials_{{ name }}:
       - service: jenkins
 
 {% endfor %}
+#}
 
 
 # Install/update plugins

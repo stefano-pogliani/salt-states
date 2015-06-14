@@ -7,7 +7,7 @@ system:
     gparted: ~
     inkscape: ~
     meld: ~
-    skype.i586: "pkgrepo: skype-repo"
+    skype.i686: "pkgrepo: skype-repo"
     tiled: ~
 
     # Games:
