@@ -16,7 +16,7 @@ node-opt-dir:
 node-unpack:
   archive.extracted:
     - name: {{ opt_path }}
-    - source: salt://data/tools/iojs-bin-v2.0.2.tar.gz
+    - source: salt://data/tools/iojs-v2.3.0-linux-armv7l.tar.gz
 
     - archive_format: tar
     - tar_options: --strip 1
