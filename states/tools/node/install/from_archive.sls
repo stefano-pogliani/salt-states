@@ -1,4 +1,8 @@
 {% set opt_path = salt["pillar.get"]("node:opt_path", "/opt/node") %}
+{% set archive = salt["pillar.get"](
+  "node:bin-archive",
+  "salt://data/tools/iojs-v2.3.0-linux-armv7l.tar.gz"
+) %}
 
 include:
   - path-profile
@@ -16,7 +20,7 @@ node-opt-dir:
 node-unpack:
   archive.extracted:
     - name: {{ opt_path }}
-    - source: salt://data/tools/iojs-v2.3.0-linux-armv7l.tar.gz
+    - source: {{ archive }}
 
     - archive_format: tar
     - tar_options: --strip 1

@@ -1,3 +1,8 @@
+{% set archive = salt["pillar.get"](
+  "node:source-archive",
+  "salt://data/tools/iojs-v2.0.2.tar.gz"
+) %}
+
 # Ensure source directory is clean.
 node-compile-directory:
   file.directory:
@@ -11,8 +16,7 @@ node-compile-directory:
 node-compile-fetch:
   archive.extracted:
     - name: /tmp/salt-node-source
-    #- source: salt://data/tools/node-v0.12.2.tar.gz
-    - source: salt://data/tools/iojs-v2.0.2.tar.gz
+    - source: {{ archive }}
 
     # Configure archive extraction.
     - archive_format: tar
@@ -27,13 +31,6 @@ node-compile-fetch:
 
 # Configure node.
 node-compile-config:
-#  make.configure:
-#    - name: /tmp/salt-node-source
-#    - options:
-#        prefix: /opt/node
-#
-#    - require:
-#      - archive: node-compile-fetch
   cmd.run:
     - cwd:  /tmp/salt-node-source
     - name: './configure --prefix=/opt/node --without-snapshot 2>&1 > configure.log'
@@ -44,10 +41,6 @@ node-compile-config:
 
 # Make it.
 node-compile-make:
-#  make.target:
-#    - name: /tmp/salt-node-source
-#    - require:
-#      - make: node-compile-config
   cmd.run:
     - cwd:  /tmp/salt-node-source
     - name: 'make 2>&1 > make.log'
@@ -58,10 +51,6 @@ node-compile-make:
 
 # Make install it.
 node-compile-make-install:
-#  make.install:
-#    - name: /tmp/salt-node-source
-#    - require:
-#      - make: node-compile-config
   cmd.run:
     - cwd:  /tmp/salt-node-source
     - name: 'make install 2>&1 > make-install.log'
