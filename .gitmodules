@@ -4,3 +4,6 @@
 [submodule "priv"]
 	path = priv
 	url = git-priv@forest:config/salt.git
+[submodule "extentions"]
+	path = extentions
+	url = git@git:config/salt-extentions.git
