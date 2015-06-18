@@ -3,7 +3,10 @@
 	url = git@github.com:saltstack-formulas/jenkins-formula.git
 [submodule "priv"]
 	path = priv
-	url = git-priv@forest:config/salt.git
+	url = git-priv@git:config/salt.git
 [submodule "extentions"]
 	path = extentions
 	url = git@git:config/salt-extentions.git
+[submodule "states/data"]
+	path = states/data
+	url = git@git:config/salt-data.git
