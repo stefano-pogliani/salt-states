@@ -16,7 +16,8 @@ base:
 
   'os:Debian':
     - match: grain
-    #Broken: - tools.coding.gcc.alternatives
+    - tools.coding.gcc.install
+    - tools.coding.gcc.alternatives
 
   amber:
     - dev-tools.all
