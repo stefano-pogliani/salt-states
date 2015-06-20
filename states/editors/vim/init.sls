@@ -4,15 +4,6 @@ vim:
   pkg.installed:
     - name: {{ vim.pkg }}
 
-vimrc-patch:
-  file.append:
-    - makedirs: True
-    - name: {{ vim.paths.vimrc }}
-    - text: 'source {{ vim.paths.custom_vimrc }}'
-
-    - require:
-      - file: vimrc
-
 vimrc:
   file.managed:
     - name: {{ vim.paths.custom_vimrc }}
@@ -24,7 +15,18 @@ vimrc:
     - user:  root
 
     - require:
-      - pkg: {{ vim.pkg }}
+      - pkg:  {{ vim.pkg }}
+      - file: vim-pathogen
+      - file: vim-scripts-check-ver
+
+vimrc-patch:
+  file.append:
+    - makedirs: True
+    - name: {{ vim.paths.vimrc }}
+    - text: 'source {{ vim.paths.custom_vimrc }}'
+
+    - require:
+      - file: vimrc
 
 vim-pathogen:
   file.managed:
@@ -38,3 +40,19 @@ vim-pathogen:
 
     - require:
       - pkg: {{ vim.pkg }}
+
+
+vim-scripts:
+  file.directory:
+    - name:   /etc/tmux
+    - makedirs: True
+    - group: root
+    - user:  root
+    - mode:  755
+
+vim-scripts-check-ver:
+  file.managed:
+    - name:   /etc/tmux/check-ver
+    - source: salt://data/editors/vim/scripts/check-ver
+    - require:
+      - file: vim-scripts
