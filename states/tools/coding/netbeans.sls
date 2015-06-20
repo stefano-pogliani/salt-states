@@ -4,6 +4,7 @@ include:
 
 netbeans_802_install:
   netbeans.install:
+    - user:    stefano
     - version: "8.0.2"
     - require:
       - pkg: pkg-install-java-1.7.0-openjdk
@@ -14,6 +15,7 @@ netbeans_802_install:
 # do not terminate but hang indefinately.
 netbeans_802_start:
   netbeans.start:
+    - user:    stefano
     - version: "8.0.2"
     - args:
       - "--nogui"
@@ -24,6 +26,7 @@ netbeans_802_start:
 
 netbeans_802_plugins:
   netbeans.pinstall:
+    - user:    stefano
     - version: "8.0.2"
     - names:
       - a
@@ -36,6 +39,7 @@ netbeans_802_plugins:
 # Stop netbeans after all operations are completed.
 netbeans_802_stop:
   netbeans.stop:
+    - user:    stefano
     - version: "8.0.2"
     - require:
       - netbeans: netbeans_802_start

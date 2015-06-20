@@ -1,5 +1,5 @@
 base:
-  '*':
+  sintofan:
     - global
     - aliases.core
 
@@ -12,6 +12,7 @@ base:
 
     - ssh.keys.deploy
 
+    - tools.coding.cppcheck
     - tools.coding.grunt
     - tools.coding.gcc.install
 

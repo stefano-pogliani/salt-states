@@ -21,6 +21,7 @@ base:
 
   amber:
     - dev-tools.all
+    - tools.coding.cppcheck
     - tools.coding.grunt
     - tools.coding.jenkins.install
     - tools.node.install.from_archive
