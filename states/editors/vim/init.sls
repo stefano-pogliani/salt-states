@@ -17,7 +17,6 @@ vimrc:
     - require:
       - pkg:  {{ vim.pkg }}
       - file: vim-pathogen
-      - file: vim-scripts-check-ver
 
 vimrc-patch:
   file.append:
@@ -40,19 +39,3 @@ vim-pathogen:
 
     - require:
       - pkg: {{ vim.pkg }}
-
-
-vim-scripts:
-  file.directory:
-    - name:   /etc/tmux
-    - makedirs: True
-    - group: root
-    - user:  root
-    - mode:  755
-
-vim-scripts-check-ver:
-  file.managed:
-    - name:   /etc/tmux/check-ver
-    - source: salt://data/editors/vim/scripts/check-ver
-    - require:
-      - file: vim-scripts
