@@ -1,0 +1,3 @@
+system:
+  insall-packages:
+    xclip: ~

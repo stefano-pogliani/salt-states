@@ -23,3 +23,4 @@ system:
     fedup: ~
     java-1.7.0-openjdk: ~
     hplip-libs: ~
+    xclip: ~
