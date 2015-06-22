@@ -30,7 +30,7 @@ vimrc-patch:
 vim-pathogen:
   file.managed:
     - name: {{ vim.paths.autoload }}/pathogen.vim
-    - source: salt://data/editors/vim/pathogen.vim
+    - source: salt://external/editors/vim/pathogen.vim
     - makedirs: True
 
     - group: root

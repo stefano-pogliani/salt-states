@@ -1,12 +1,12 @@
-[submodule "formulas/jenkins-formula"]
-	path = formulas/jenkins-formula
-	url = git@github.com:saltstack-formulas/jenkins-formula.git
+[submodule "data/external"]
+	path = data/external
+	url = git@git:config/salt-data.git
 [submodule "priv"]
 	path = priv
 	url = git-priv@git:config/salt.git
 [submodule "extentions"]
 	path = extentions
 	url = git@git:config/salt-extentions.git
-[submodule "states/data"]
-	path = states/data
-	url = git@git:config/salt-data.git
+[submodule "formulas/jenkins-formula"]
+	path = formulas/jenkins-formula
+	url = git@github.com:saltstack-formulas/jenkins-formula.git

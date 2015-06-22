@@ -1,0 +1,84 @@
+"Custom VIM settings."
+execute pathogen#infect()
+
+
+"Misc options."
+set autoindent
+set number
+set splitright
+syntax on
+
+
+"Auto complete options."
+inoremap <Nul> <C-n>
+map r :redo<cr>
+set complete+=k
+
+
+"Auto indent options."
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+imap <S-Tab> <C-o><<
+
+filetype plugin indent on
+
+
+"Code folding."
+function ConfigureFolding()
+  "Get file type or extension."
+  let type = &filetype
+  if type == ''
+    let type = fnamemodify(bufname("%"), ":e")
+  endif
+
+  "Set the encoding based on that."
+  if     type == 'json'   | set foldmethod=indent
+  elseif type == 'python' | set foldmethod=indent
+  else                    | set foldmethod=syntax
+  endif
+endfunction
+
+autocmd FileType * call ConfigureFolding()
+set foldlevelstart=20
+
+
+"Spell checking."
+set  dictionary=/usr/share/myspell/en_GB.dic
+map  <F2> :setlocal spell! spelllang=en_gb<CR>
+map  <F3> z=
+imap <F2> <Esc><F2>i
+imap <F3> <Esc><F3>
+command Spellcheck execute "setlocal spell spelllang=en_gb"
+command Nospell    execute "set nospell"
+
+
+"System clipboard copy-paste options."
+"NOT SUPPORTED UNDER DEFAULT FEDORA VERSION!!!"
+
+
+"NERDTree"
+function ConfigureNerdTree()
+  autocmd VimEnter * if exists(":NERDTree") | NERDTree | endif
+  autocmd VimEnter * if exists(":NERDTree") | wincmd p | endif
+  autocmd BufWinEnter * if exists(":NERDTree") | silent NERDTreeMirror | endif
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+endfunction
+
+
+"Wait for the file type to be loaded before using it."
+let g:file_based_main_run = 0
+function FileBasedMain()
+  if g:file_based_main_run
+    return
+  endif
+
+  "Enable NERDTree only if not in git commit mode"
+  if &filetype != 'gitcommit'
+    call ConfigureNerdTree()
+  endif
+
+  let g:file_based_main_run = 1
+endfunction
+autocmd BufWinEnter * call FileBasedMain()

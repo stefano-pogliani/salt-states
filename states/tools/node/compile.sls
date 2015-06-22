@@ -1,6 +1,6 @@
 {% set archive = salt["pillar.get"](
   "node:source-archive",
-  "salt://data/tools/iojs-v2.0.2.tar.gz"
+  "salt://external/tools/iojs-v2.0.2.tar.gz"
 ) %}
 
 # Ensure source directory is clean.

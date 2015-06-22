@@ -8,7 +8,7 @@ zabbix-extract-archive:
     - name:           /opt
     - user:           zabbix
     - tar_options:    z
-    - source: salt://data/zabbix/binaries/{{ salt['pillar.get']('zabbix:archive', 'armhf.tar.gz') }}
+    - source: salt://external/zabbix/binaries/{{ salt['pillar.get']('zabbix:archive', 'armhf.tar.gz') }}
 
 /etc/init.d/zabbix-agent:
   file.managed:

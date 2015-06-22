@@ -1,0 +1,18 @@
+# Generated with salt base on iptables-save v1.4.19.1 format.
+
+# Iterate over tables.
+{% for table in salt['pillar.get']('iptables:v4-rules', []) %}
+*{{table.name}}
+# Define chanis in this table.
+  {% for chain in table.chains %}
+:{{chan.name}} {{chan.default|default('-')}} [0:0]
+  {% endfor %}
+# Add rules to the chain.
+  {% for rule in table.rules %}
+{{rule}}
+  {% endfor %}
+# Each table is committed infividually
+COMMIT
+
+{% endfor %}
+

@@ -391,9 +391,10 @@ timeout: 3600
 
 file_roots:
   base:
-    - /etc/salt/extentions
+    - /etc/salt/data
     - /etc/salt/states
     - /etc/salt/priv/data
+    - /etc/salt/extentions
     - /etc/salt/formulas/jenkins-formula
     - /etc/salt/formulas/zabbix-formula
     - /etc/salt/formulas/openvpn-formula

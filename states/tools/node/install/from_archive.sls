@@ -1,7 +1,7 @@
 {% set opt_path = salt["pillar.get"]("node:opt_path", "/opt/node") %}
 {% set archive = salt["pillar.get"](
   "node:bin-archive",
-  "salt://data/tools/iojs-bin-v2.0.2.tar.gz"
+  "salt://external/tools/iojs-bin-v2.0.2.tar.gz"
 ) %}
 
 include:

@@ -1,0 +1,19 @@
+#!/bin/bash
+# Checks that the tmux version is creater or equal to the argument.
+
+# Is 1.4 >= 1.7
+version_greater_or_equal() {
+  max=$(echo -e "$1\n$2" | sort --reverse --version-sort | head -n1)
+  [ "$1" = "$max" ]
+}
+
+# Get the current version.
+get_version() {
+  tmux -V | cut -d' ' -f2
+}
+
+
+checked=$1
+current=$(get_version)
+
+version_greater_or_equal "${current}" "${checked}"
