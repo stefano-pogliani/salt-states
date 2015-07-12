@@ -437,7 +437,8 @@ file_roots:
 # also be configured on the minion:
 pillar_roots:
   base:
-    - /etc/stal/pillars
+    - /etc/salt/pillars
+    - /etc/salt/priv/pillars
 #
 #
 ######        Security settings       #####

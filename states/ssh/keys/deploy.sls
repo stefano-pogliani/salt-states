@@ -1,7 +1,7 @@
 # SSH key deploy state.
 # Keys are stored in the pillar in a users:keys dictionary that
 # maps the user name to the key information.
-{% set keys = salt["pillar.get"]("users:keys") %}
+{% set keys = salt["pillar.get"]("users:keys", {}) %}
 
 # For each user look up the key information.
 {% for id, key in keys.iteritems() %}
