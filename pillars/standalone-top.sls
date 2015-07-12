@@ -4,10 +4,11 @@ base:
     - base.users.stefano
 
     - sintofan.editors.vim
+    - sintofan.openvpn
+
     - sintofan.pkg_names
     - sintofan.packages
-
-    - sintofan.openvpn
+    - sintofan.tmux
 
     # Private stuff.
     - keys.ssh.users.stefano
