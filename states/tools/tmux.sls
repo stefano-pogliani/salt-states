@@ -55,7 +55,7 @@ tmux-dir-puglins:
       - file: tmux-dir-etc
 
 # Install plugins.
-{% for plugin in salt["pillar.get"]("", []) %}
+{% for plugin in plugins %}
 tmux-plugin-{{ plugin.name }}:
   git.latest:
     - name:   {{ plugin.repo }}
