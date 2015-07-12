@@ -19,8 +19,8 @@ tmux-conf:
 
     - template: jinja
     - context:
-      - plugins: {{ plugins }}
-      - plugins_path: /etc/tmux/plugins
+      plugins: {{ plugins }}
+      plugins_path: /etc/tmux/plugins
 
     - require:
       - pkg:  tmux
