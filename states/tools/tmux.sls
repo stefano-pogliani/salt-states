@@ -11,7 +11,7 @@ tmux-package:
 tmux-conf:
   file.managed:
     - name: /etc/tmux.conf
-    - source: salt://data/tools/tmux.conf
+    - source: salt://data/tools/tmux/tmux.conf
 
     - group: root
     - mode:  644
@@ -36,7 +36,7 @@ tmux-dir-etc:
 tmux-scripts-check-ver:
   file.managed:
     - name:   /etc/tmux/check-ver
-    - source: salt://data/editors/vim/scripts/check-ver
+    - source: salt://data/tools/tmux/check-ver
     - require:
       - file: tmux-dir-etc
 
@@ -54,14 +54,6 @@ tmux-dir-puglins:
     - require:
       - file: tmux-dir-etc
 
-# Plugins manager.
-tmux-plugin-manager:
-  git.latest:
-    - name:   https://github.com/tmux-plugins/tpm
-    - target: /etc/tmux/plugins/tpm
-    - require:
-      - file: tmux-dir-plugins
-
 # Install plugins.
 {% for plugin in salt["pillar.get"]("", []) %}
 tmux-plugin-{{ plugin.name }}:
@@ -70,6 +62,6 @@ tmux-plugin-{{ plugin.name }}:
     - target: /etc/tmux/plugins/{{ plugin.name }}
     - require:
       - file: tmux-dir-plugins
-      - git:  tmux-plugin-manager
 {% endfor %}
+
 {% endif %}
