@@ -17,9 +17,17 @@ tmux-conf:
     - mode:  644
     - user:  root
 
+    - template: jinja
+    - context:
+      - plugins: {{ plugins }}
+      - plugins_path: /etc/tmux/plugins
+
     - require:
       - pkg:  tmux
       - file: tmux-scripts-check-ver
+      {% for plugin in plugins %}
+      - git: tmux-plugin-{{ plugin.name }}
+      {% endfor %}
 
 
 # Create needed directories.
@@ -44,7 +52,7 @@ tmux-scripts-check-ver:
 # Deal with plugins, if any.
 {% if plugins %}
 # Plugins dir.
-tmux-dir-puglins:
+tmux-dir-plugins:
   file.directory:
     - name:   /etc/tmux/plugins
     - makedirs: True
