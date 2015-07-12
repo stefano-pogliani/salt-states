@@ -67,6 +67,15 @@ function ConfigureNerdTree()
 endfunction
 
 
+"Searching"
+function GrepAll(pattern)
+  execute "silent grep -RIn '" . a:pattern . "' *"
+  redraw!
+  cwindow
+endfunction
+command -nargs=1 SearchAll call GrepAll(<f-args>)
+
+
 "Wait for the file type to be loaded before using it."
 let g:file_based_main_run = 0
 function FileBasedMain()
