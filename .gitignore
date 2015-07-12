@@ -1,5 +1,6 @@
+/minion*
+
 __pycache__
-minion*
 
 *.pyc
 *.swp
