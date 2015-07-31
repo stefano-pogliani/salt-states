@@ -1,0 +1,25 @@
+#!/bin/bash
+# Archives the entire system and outputs it to stdout.
+# The output is a gzipped tar stream.
+#
+# The aim of this script is to execute backups over SSH.
+
+
+# List of patterns to exclude from the backup.
+# "/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"
+EXCLUSIONS="${EXCLUSIONS-""} --exclude=/dev/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/proc/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/sys/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/tmp/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/run/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/mnt/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/media/*"
+EXCLUSIONS="${EXCLUSIONS} --exclude=/lost+found"
+
+# Options to archive files for backup pourposes.
+TAR_OPTS="--atime-preserv --preserve-permissions"
+TAR_OPTS="${TAR_OPTS} --same-owner --create --gzip --verbose"
+
+
+### Main ###
+tar ${TAR_OPTS} ${EXCLUSIONS} /

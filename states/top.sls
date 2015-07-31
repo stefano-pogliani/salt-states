@@ -6,7 +6,6 @@ base:
     - editors.vim
     - editors.vim.bundles
 
-    #- iptables
     - ssh.keys.access
     - ssh.keys.deploy
 
@@ -16,7 +15,6 @@ base:
 
   'os:Debian':
     - match: grain
-    - tools.coding.gcc.install
     - tools.coding.gcc.alternatives
 
   amber:
@@ -35,3 +33,7 @@ base:
 
     # Temporarely use iptables only for one host to test it.
     - iptables
+
+
+  thoth:
+    - services.mysql.server
