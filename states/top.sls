@@ -36,4 +36,5 @@ base:
 
 
   thoth:
+    - services.influxdb.server
     - services.mysql.server

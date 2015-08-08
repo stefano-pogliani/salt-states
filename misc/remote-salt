@@ -1,0 +1,119 @@
+#!/bin/bash
+# Wrapper script to call salt commands on a remote machine.
+# The user must have SSH access to the salt master and be able to
+# execute salt commands on it.
+
+# Copyright (c) 2015, Stefano Pogliani
+# All rights reserved.
+# http://opensource.org/licenses/BSD-3-Clause
+
+
+USAGE="Executes a SaltStack CLI tool on a remote server.
+Syntax remote-salt SERVER [key|call] [OPTIONS] [--] COMMAND
+
+
+SERVER is the IP or Hostname of the server to SSH into.
+       This **must** be the first argument, even before --options.
+
+COMMAND is the salt command to execute remotely.
+        This includes options starting with -- as well.
+
+OPTIONS options (starting with --) to pass to this script.
+        If an option is not recoginsed by the script it is forwarded.
+
+-- Optional separator for the command.
+   All arguments that follow this are sent to the remote command
+   and ignored locally.
+
+
+The following OPTIONS are available:
+
+  -d | --dry-run  Prints the command that would be executed instead of running it.
+  -h | --help     Print this message and exits.
+       --sudo     Execute the remote command with sudo.
+
+  -i | --identity FILE Use the specifyied identity file for SSH.
+
+
+By default the command is executed through the salt utility.
+If the second argument to remote-salt is one of the following,
+a different utility is used:
+
+  * call: uses salt-call
+  * key:  uses salt-key
+"
+
+
+# Script constants.
+SSH="ssh"      # The SSH client command.
+SSH_OPTS="-t"  # Options to always pass to SSH command.
+
+
+# Variables:
+DO_SUDO=""       # Enables the execution of the remote command with sudo.
+DRY_RUN="no"     # Enables dry-run mode.
+REMOTE_CMD=""    # Stores the command to execute remotely.
+SALT_CMD="salt"  # The salt utility to execute remotely.
+SALT_SRV=""      # Server to connect to.
+SSH_IDENT=""     # Should SSH use another identity file?
+
+
+# Prints usage and exits.
+help_and_exit() {
+  echo -e "${USAGE}"
+  exit 1
+}
+
+
+### MAIN ###
+# Parse the command line arguments to the script.
+# Check that at least 2 argument are present: server and command.
+if [ $# -lt 2 ]; then
+  help_and_exit
+fi
+
+# Get the server out of the arguments list.
+SALT_SRV=$1
+shift
+
+# Process the options.
+while [ $# -ne 0 ]; do
+  arg=$1
+  shift
+
+  case "${arg}" in
+    # Salt tool selection.
+    call) SALT_CMD="salt-call";;
+    key)  SALT_CMD="salt-key";;
+
+    # Script options.
+    -d|--dry-run) DRY_RUN="yes";;
+    -h|--help)    help_and_exit;;
+       --sudo)    DO_SUDO="sudo";;
+
+    -i|--identity)
+      SSH_IDENT="-i $1"
+      shift
+      ;;
+
+    # Other (forwarded) options.
+    --)
+      REMOTE_CMD="${REMOTE_CMD} $*"
+      break
+      ;;
+
+    '*') REMOTE_CMD="${REMOTE_CMD} '*'";;
+    *)   REMOTE_CMD="${REMOTE_CMD} ${arg}";;
+  esac
+done
+
+
+# Run the salt command through SSH.
+run_with="${SSH}"
+if [ "${DRY_RUN}" == "yes" ]; then
+  run_with="echo ${SSH}"
+fi
+
+${run_with}  \
+  ${SSH_OPTS} ${SSH_IDENT} ${SALT_SRV}  \
+  ${DO_SUDO} ${SALT_CMD} ${REMOTE_CMD}
