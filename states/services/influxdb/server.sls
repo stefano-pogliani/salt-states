@@ -4,7 +4,7 @@ influxdb-server-config:
     - source: salt://data/services/influxdb/influxdb.conf
 
     - require:
-      - pkg:  influxdb-server-install
+      - cmd:  influxdb-server-install
       - file: influxdb-server-data
 
 
@@ -16,7 +16,7 @@ influxdb-server-data:
     - mode:  700
 
     - require:
-      - pkg: influxdb-server-install
+      - cmd: influxdb-server-install
 
 
 influxdb-server-get-deb:
@@ -29,6 +29,8 @@ influxdb-server-install:
   cmd.run:
     - name: dpkg -i /tmp/influxdb_0.9-devel_armhf.deb
     - unless: dpkg -s influxdb
+    - require:
+      - file: influxdb-server-get-deb
 
 
 influxdb-server-service:
@@ -36,6 +38,6 @@ influxdb-server-service:
     - name: influxdb
     - enable: True
     - require:
-      - pkg: influxdb-server-install
+      - cmd: influxdb-server-install
     - watch:
       - file: influxdb-server-config
