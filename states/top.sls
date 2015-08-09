@@ -17,6 +17,7 @@ base:
     - match: grain
     - tools.coding.gcc.alternatives
 
+
   amber:
     - dev-tools.all
     - tools.coding.cppcheck
@@ -24,16 +25,11 @@ base:
     - tools.coding.jenkins.install
     - tools.node.install.from_archive
 
-  #forest:
-  #    - zabbix.front
+  forest:
+    - services.grafana.install
 
-  lathander:
-    #- zabbix.agent
-    #- zabbix.server
-
-    # Temporarely use iptables only for one host to test it.
-    - iptables
-
+  #lathander:
+  #  - iptables
 
   thoth:
     - services.influxdb.server
