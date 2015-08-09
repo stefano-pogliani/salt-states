@@ -19,10 +19,16 @@ influxdb-server-data:
       - pkg: influxdb-server-install
 
 
+influxdb-server-get-deb:
+  file.managed:
+    - name:  /tmp/influxdb_0.9-devel_armhf.deb
+    - source: salt://external/services/influxdb_0.9-devel_armhf.deb
+
+
 influxdb-server-install:
-  pkg.installed:
-    - sources:
-      - influxd: salt://external/services/influxdb_0.9-devel_armhf.deb
+  cmd.run:
+    - name: dpkg -i /tmp/influxdb_0.9-devel_armhf.deb
+    - unless: dpkg -s influxdb
 
 
 influxdb-server-service:
