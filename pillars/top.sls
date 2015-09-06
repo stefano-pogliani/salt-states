@@ -33,6 +33,8 @@ base:
   lathander:
     #- lathander.iptables.v4-rules
     - lathander.zabbix
+    - keys.ssh.users.lathander
+    - keys.ssh.users.lathander.private
 
     # Relevant SSH keys
     #- keys.ssh.users.lathander

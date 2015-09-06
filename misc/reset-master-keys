@@ -1,0 +1,35 @@
+#!/bin/bash
+# Resets the key for the salt master and re-starts salt minions.
+# Usefull when the salt master has been reinstalled.
+
+
+# Variables.
+SUDO="sudo"
+
+
+# [Remote] Steps:
+#  - Stop salt minion.
+#  - Remove existing key (/etc/salt/pki/minion/minion_master.pub).
+#  - Start salt minion.
+generate_remote_script() {
+  echo "${SUDO} service salt-minion stop;
+    ${SUDO} rm -f /etc/salt/pki/minion/minion_master.pub;
+    ${SUDO} service salt-minion start"
+}
+
+# Execute on the remote system.
+clean_remote() {
+  host=$1
+  echo "Cleaning keys on ${host} ..."
+  ssh -t "${host}" $(generate_remote_script)
+}
+
+
+### MAIN ###
+# Parse args.
+# TODO
+
+clean_remote "amber"
+clean_remote "forest"
+clean_remote "lathander"
+clean_remote "thoth"

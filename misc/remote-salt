@@ -9,7 +9,7 @@
 
 
 USAGE="Executes a SaltStack CLI tool on a remote server.
-Syntax remote-salt SERVER [key|call] [OPTIONS] [--] COMMAND
+Syntax remote-salt SERVER [call|key|run] [OPTIONS] [--] COMMAND
 
 
 SERVER is the IP or Hostname of the server to SSH into.
@@ -85,6 +85,7 @@ while [ $# -ne 0 ]; do
     # Salt tool selection.
     call) SALT_CMD="salt-call";;
     key)  SALT_CMD="salt-key";;
+    run)  SALT_CMD="salt-run";;
 
     # Script options.
     -d|--dry-run) DRY_RUN="yes";;
