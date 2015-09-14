@@ -58,6 +58,15 @@ SALT_SRV=""      # Server to connect to.
 SSH_IDENT=""     # Should SSH use another identity file?
 
 
+# Appends an argument to the REMOTE_CMD variable and quotes it.
+# Quoting is done with double-quote and nested quotes are escaped.
+append_quoted_arg() {
+  arg=$1
+  arg="${arg//\"/\\\"}"
+  REMOTE_CMD="${REMOTE_CMD} \"${arg}\""
+}
+
+
 # Prints usage and exits.
 help_and_exit() {
   echo -e "${USAGE}"
@@ -98,13 +107,16 @@ while [ $# -ne 0 ]; do
       ;;
 
     # Other (forwarded) options.
+    # Escape arguments to avoid ambiguity.
     --)
-      REMOTE_CMD="${REMOTE_CMD} $*"
-      break
+      while [ $# -ne 0 ]; do
+        append_quoted_arg "$1"
+        shift
+      done
       ;;
 
     '*') REMOTE_CMD="${REMOTE_CMD} '*'";;
-    *)   REMOTE_CMD="${REMOTE_CMD} ${arg}";;
+    *)   append_quoted_arg "${arg}";;
   esac
 done
 

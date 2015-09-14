@@ -54,6 +54,9 @@ command Spellcheck execute "setlocal spell spelllang=en_gb"
 command Nospell    execute "set nospell"
 
 
+"Plugins configuration"
+let g:vim_json_syntax_conceal = 0
+
 "System clipboard copy-paste options."
 "NOT SUPPORTED UNDER DEFAULT FEDORA VERSION!!!"
 
