@@ -20,10 +20,14 @@ base:
 
   amber:
     - dev-tools.all
+    - tools.node.install.from_archive
+
     - tools.coding.cppcheck
     - tools.coding.grunt
     - tools.coding.jenkins.install
-    - tools.node.install.from_archive
+
+    - tools.coding.protobuf
+    - tools.coding.protobuf.cpp
 
   forest:
     - services.grafana.install
