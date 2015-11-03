@@ -9,18 +9,15 @@ base:
     - ssh.keys.access
     - ssh.keys.deploy
 
-    - tools.coding.gcc.install
     - tools.git
     - tools.tmux
-
-  'os:Debian':
-    - match: grain
-    - tools.coding.gcc.alternatives
-
 
   amber:
     - dev-tools.all
     - tools.node.install.from_archive
+
+    - tools.coding.gcc.install
+    - tools.coding.gcc.alternatives
 
     - tools.coding.cppcheck
     - tools.coding.grunt
