@@ -3,7 +3,7 @@ owncloud-repo:
     - name: "deb http://download.owncloud.org/download/repositories/stable/Debian_7.0/ /"
     - file: /etc/apt/sources.list.d/owncloud.list
     - dist: stable
-    - key_url: https://download.owncloud.org/download/repositories/stable/Debian_7.0/Release.key
+    - key_url: salt://data/services/owncloud/Release.key
 
 
 owncloud-install:
