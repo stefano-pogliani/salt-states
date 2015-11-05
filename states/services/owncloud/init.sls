@@ -27,11 +27,13 @@ owncloud-selinux-install:
     - name: policycoreutils
 
 
-#owncloud-selinux-data:
-#  cmd.run:
-#    - name: "?  /data/owncloud"
-#    - onlyif: ""
-#
-#    - require:
-#      - mount: owncloud-mount-data
-#      - pkg:   owncloud-selinux-install
+owncloud-selinux-data:
+  cmd.run:
+    - name: |
+        semanage fcontext -a -t httpd_sys_rw_content_t '/data/owncloud'
+        restorecon '/data/owncloud'
+
+    - unless:  "test $(ls --directory --context /data/owncloud | grep -c 'httpd_sys_rw_content_t') == 1"
+    - require:
+      - mount: owncloud-mount-data
+      - pkg:   owncloud-selinux-install
