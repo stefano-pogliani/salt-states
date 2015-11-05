@@ -32,6 +32,9 @@ base:
   #lathander:
   #  - iptables
 
+  nephele:
+    - services.owncloud
+
   thoth:
     - services.influxdb.server
     - services.mysql.server
