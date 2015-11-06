@@ -19,12 +19,24 @@ owncloud-mount-data:
     - fstype: ext4
 
     - mkmnt: True
-    - opts:  "rw,nosuid,dev,noexec,auto,nouser,async"
+    - opts:  "defaults,nosuid,noexec"
 
 
 owncloud-selinux-install:
   pkg.latest:
     - name: policycoreutils
+
+
+owncloud-data-create:
+  file.directory:
+    - name: /data/owncloud
+
+    - group: www-data
+    - user:  www-data
+    - mode:  640
+
+    - require:
+      - pkg: owncloud-install
 
 
 owncloud-selinux-data:
@@ -35,5 +47,6 @@ owncloud-selinux-data:
 
     - unless:  "test $(ls --directory --context /data/owncloud | grep -c 'httpd_sys_rw_content_t') == 1"
     - require:
+      - file:  owncloud-data-create
       - mount: owncloud-mount-data
       - pkg:   owncloud-selinux-install
