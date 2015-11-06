@@ -1,10 +1,16 @@
 selinux-tools-install:
   pkg.installed:
-    - name: selinux-utils
+    - pkgs:
+        - auditd
+        - selinux-utils
+        - selinux-basics
+        - selinux-policy-default
 
 
-selinux-enable:
-  selinux.mode:
-    - name: enforcing
-    - require:
-      - pkg: selinux-tools-install
+# SELinux is not supported by the default raspbian kernel ...
+#selinux-enable:
+#  cmd.run:
+#    - name:   selinux-activate
+#    - onlyif: sestatus
+#    - require:
+#      - pkg: selinux-tools-install
