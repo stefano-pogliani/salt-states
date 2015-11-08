@@ -40,7 +40,7 @@ owncloud-data-create:
 
 owncloud-clt-script:
   file.managed:
-    - name:   /opt/spogliani/owncloud/owncloudclt
+    - name:   /opt/spogliani/owncloud/owncloudctl
     - source: salt://data/services/owncloud/owncloudclt.sh
     - makedirs: True
 

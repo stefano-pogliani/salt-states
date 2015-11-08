@@ -19,13 +19,16 @@ owncloud-occ-install:
         --database-user "{{ config.db.user }}"
         --database-pass "{{ config.db.password }}"
 
-    - unless: /opt/spogliani/owncloud/owncloudclt check install
+    - unless: /opt/spogliani/owncloud/owncloudctl check install
     - cwd:    /var/www/owncloud
     - group:  www-data
     - user:   www-data
 
     - require:
       - mysql_database: owncloud-db-ensure
+      - mysql_user:   owncloud-dbuser-ensure
+      - mysql_grants: owncloud-dbuser-grant-all
+
       - pkg:  owncloud-install
       - file: owncloud-data-create
       - file: owncloud-clt-script
