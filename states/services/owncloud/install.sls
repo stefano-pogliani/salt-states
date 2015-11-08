@@ -8,7 +8,7 @@ include:
 owncloud-occ-install:
   cmd.run:
     - name: >
-        ./occ maintenance:install
+        php occ maintenance:install
         --no-interaction
         --data-dir "/data/owncloud"
 
