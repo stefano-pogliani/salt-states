@@ -7,7 +7,7 @@ owncloud-occ-install:
     - name: >
         ./occ list
 
-    - onlyif: /opt/spogliani/owncloud/owncloudclt check install
+    - unless: /opt/spogliani/owncloud/owncloudclt check install
     - cwd:    /var/www/owncloud
     - group:  www-data
     - user:   www-data

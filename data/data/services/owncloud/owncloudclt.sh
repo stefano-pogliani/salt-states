@@ -45,7 +45,7 @@ check() {
 
 check_install() {
   cd ${OWNCLOUD_ROOT}
-  installed=${OWNCLOUD_CTL} list | grep -c 'ownCloud is not installed'
+  installed=$(${OWNCLOUD_CTL} list | grep -c 'ownCloud is not installed')
   if [ "${installed}" -eq 1 ]; then
     exit ${EXIT_NOT_INSTALLED}
   else
