@@ -63,7 +63,7 @@ owncloud-clt-script:
 #      - pkg:   owncloud-selinux-install
 
 
-{% set db = salt["pillar.get"]("mysql:thoth:host") %}
+{% set db = salt["pillar.get"]("mysql:thoth") %}
 owncloud-db-ensure:
   mysql_database.present:
     - name: owncloud
