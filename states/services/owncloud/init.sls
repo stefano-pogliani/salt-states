@@ -22,11 +22,6 @@ owncloud-mount-data:
     - opts:  "defaults,nosuid,noexec"
 
 
-owncloud-selinux-install:
-  pkg.latest:
-    - name: policycoreutils
-
-
 owncloud-data-create:
   file.directory:
     - name: /data/owncloud
@@ -39,14 +34,15 @@ owncloud-data-create:
       - pkg: owncloud-install
 
 
-owncloud-selinux-data:
-  cmd.run:
-    - name: |
-        semanage fcontext -a -t httpd_sys_rw_content_t '/data/owncloud'
-        restorecon '/data/owncloud'
-
-    - unless:  "test $(ls --directory --context /data/owncloud | grep -c 'httpd_sys_rw_content_t') == 1"
-    - require:
-      - file:  owncloud-data-create
-      - mount: owncloud-mount-data
-      - pkg:   owncloud-selinux-install
+# This all require SELinux which is not available in Raspbian.
+#owncloud-selinux-data:
+#  cmd.run:
+#    - name: |
+#        semanage fcontext -a -t httpd_sys_rw_content_t '/data/owncloud'
+#        restorecon '/data/owncloud'
+#
+#    - unless:  "test $(ls --directory --context /data/owncloud | grep -c 'httpd_sys_rw_content_t') == 1"
+#    - require:
+#      - file:  owncloud-data-create
+#      - mount: owncloud-mount-data
+#      - pkg:   owncloud-selinux-install

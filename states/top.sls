@@ -34,7 +34,8 @@ base:
 
   nephele:
     - services.owncloud
-    - system.selinux.enable
+    - services.owncloud.install
+    #- services.owncloud.secure
 
   thoth:
     - services.influxdb.server
