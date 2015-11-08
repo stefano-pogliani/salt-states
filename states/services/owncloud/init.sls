@@ -38,6 +38,7 @@ owncloud-clt-script:
   file.managed:
     - name:   /opt/spogliani/owncloud/owncloudclt
     - source: salt://data/services/owncloud/owncloudclt.sh
+    - makedirs: True
 
     - group: www-data
     - user:  www-data
