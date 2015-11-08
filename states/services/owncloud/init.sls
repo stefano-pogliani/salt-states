@@ -64,9 +64,25 @@ owncloud-clt-script:
 
 
 {% set db = salt["pillar.get"]("mysql:thoth") %}
+{% set dbpwd = salt["pillar.get"]("owncloud:server:db:password") %}
+
 owncloud-db-ensure:
   mysql_database.present:
     - name: owncloud
+    - connection_host: {{ db.host }}
+    - connection_user: {{ db.user }}
+    - connection_pass: {{ db.password }}
+
+    - require:
+      - pkg: mysql-saltctl-python-mysqldb-install
+
+
+owncloud-dbuser-ensure:
+  mysql_user.present:
+    - name: owncloud
+    - host: nephele.sph
+    - password: {{ dbpwd }}
+
     - connection_host: {{ db.host }}
     - connection_user: {{ db.user }}
     - connection_pass: {{ db.password }}
