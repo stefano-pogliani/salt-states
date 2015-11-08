@@ -39,3 +39,7 @@ base:
     # Relevant SSH keys
     #- keys.ssh.users.lathander
     #- keys.ssh.users.lathander.private
+
+  nephele:
+    - services.owncloud
+    - services.owncloud.private
