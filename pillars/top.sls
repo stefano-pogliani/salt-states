@@ -41,5 +41,7 @@ base:
     #- keys.ssh.users.lathander.private
 
   nephele:
+    - services.mysql.saltctl.thoth
+    - services.mysql.saltctl.private.thoth
     - services.owncloud
     - services.owncloud.private

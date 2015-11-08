@@ -1,3 +1,7 @@
+include:
+  - services.mysql.saltctl
+
+
 owncloud-repo:
   pkgrepo.managed:
     - name: "deb http://download.owncloud.org/download/repositories/stable/Debian_7.0/ /"
@@ -57,3 +61,15 @@ owncloud-clt-script:
 #      - file:  owncloud-data-create
 #      - mount: owncloud-mount-data
 #      - pkg:   owncloud-selinux-install
+
+
+{% set db = salt["pillar.get"]("mysql:thoth:host") %}
+owncloud-db-ensure:
+  mysql_database.present:
+    - name: owncloud
+    - connection_host: {{ db.host }}
+    - connection_user: {{ db.user }}
+    - connection_pass: {{ db.password }}
+
+    - require:
+      - pkg: mysql-saltctl-python-mysqldb-install

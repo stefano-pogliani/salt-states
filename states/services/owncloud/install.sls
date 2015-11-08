@@ -25,6 +25,7 @@ owncloud-occ-install:
     - user:   www-data
 
     - require:
+      - mysql_database: owncloud-db-ensure
       - pkg:  owncloud-install
       - file: owncloud-data-create
       - file: owncloud-clt-script
