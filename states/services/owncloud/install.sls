@@ -8,18 +8,15 @@ include:
 owncloud-occ-install:
   cmd.run:
     - name: >
-        php occ maintenance:install
-        --no-interaction
-        --data-dir "/data/owncloud"
-
-        --admin-user "{{ config.admin.user }}"
-        --admin-pass "{{ config.admin.password }}"
-
-        --database "mysql"
-        --database-name "owncloud"
-
-        --database-host "{{ config.db.host }}"
-        --database-user "{{ config.db.user }}"
+        php occ maintenance:install  \
+        --no-interaction             \
+        --data-dir "/data/owncloud"  \
+        --admin-user "{{ config.admin.user }}"      \
+        --admin-pass "{{ config.admin.password }}"  \
+        --database "mysql"          \
+        --database-name "owncloud"  \
+        --database-host "{{ config.db.host }}"     \
+        --database-user "{{ config.db.user }}"     \
         --database-pass "{{ config.db.password }}"
 
     - unless: /opt/spogliani/owncloud/owncloudclt check install
