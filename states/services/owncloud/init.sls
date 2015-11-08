@@ -89,3 +89,20 @@ owncloud-dbuser-ensure:
 
     - require:
       - pkg: mysql-saltctl-python-mysqldb-install
+
+
+owncloud-dbuser-grant-all:
+  mysql_grants.present:
+    - database: "owncloud.*"
+    - grant: "all privileges"
+
+    - user: owncloud
+    - host: nephele.sph
+
+    - connection_host: {{ db.host }}
+    - connection_user: {{ db.user }}
+    - connection_pass: {{ db.password }}
+
+    - require:
+      - mysql_database: owncloud-db-ensure
+      - mysql_user: owncloud-dbuser-ensure
