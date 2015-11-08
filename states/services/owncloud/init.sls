@@ -34,6 +34,16 @@ owncloud-data-create:
       - pkg: owncloud-install
 
 
+owncloud-clt-script:
+  file.managed:
+    - name:   /opt/spogliani/owncloud/owncloudclt
+    - source: salt://data/services/owncloud/owncloudclt.sh
+
+    - group: www-data
+    - user:  www-data
+    - mode:  750
+
+
 # This all require SELinux which is not available in Raspbian.
 #owncloud-selinux-data:
 #  cmd.run:
