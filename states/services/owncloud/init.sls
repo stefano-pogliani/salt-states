@@ -28,7 +28,7 @@ owncloud-data-create:
 
     - group: www-data
     - user:  www-data
-    - mode:  640
+    - mode:  750
 
     - require:
       - pkg: owncloud-install
