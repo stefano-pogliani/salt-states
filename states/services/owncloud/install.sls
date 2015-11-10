@@ -73,13 +73,13 @@ owncloud-apache-vhost-link:
     - mode:  640
 
     - require:
-      file: owncloud-apache-vhost
+      - file: owncloud-apache-vhost
 
 
 # Restart apache
 owncloud-apache-restart:
   service.running:
-    - name: httpd
+    - name: apache2
     - require:
       - cmd: owncloud-occ-install
     - watch:
