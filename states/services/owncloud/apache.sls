@@ -39,7 +39,7 @@ owncloud-apache-vhost:
       - file: owncloud-apache-key
 
 
-# Enable apache configurations.
+# Enable apache site and SSL module.
 owncloud-apache-site-enable:
   cmd.run:
     - name:    a2ensite owncloud
@@ -55,6 +55,15 @@ owncloud-apache-ssl-module:
       - pkg: owncloud-install
 
 
+# Disable default site.
+owncloud-apache-default-disable:
+  cmd.run:
+    - name: a2dissite 000-default
+    - onlyif: test -e /etc/apache2/sites-enabled/000-default
+    - require:
+      - pkg: owncloud-install
+
+
 # Restart apache
 owncloud-apache-restart:
   service.running:
@@ -64,6 +73,7 @@ owncloud-apache-restart:
       - cmd: owncloud-occ-install
 
     - watch:
+      - cmd:  owncloud-apache-default-disable
       - cmd:  owncloud-apache-site-enable
       - cmd:  owncloud-apache-ssl-module
       - file: owncloud-apache-vhost

@@ -1,7 +1,3 @@
-# Disable alias by overriding.
-Alias /owncloud "/var/www/404"
-
-
 # Directory configuration.
 <Directory "/var/www/owncloud">
   Options +FollowSymLinks
