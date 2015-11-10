@@ -32,3 +32,16 @@ owncloud-occ-install:
       - pkg:  owncloud-install
       - file: owncloud-data-create
       - file: owncloud-clt-script
+
+
+owncloud-config-deploy:
+  file.managed:
+    - name:   /var/www/owncloud/config/salt.config.php
+    - source: salt://data/services/owncloud/salt.config.php
+
+    - group: www-data
+    - user:  www-data
+    - mode:  640
+
+    - require:
+      - cmd: owncloud-occ-install
