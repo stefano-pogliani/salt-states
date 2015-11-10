@@ -8,7 +8,7 @@ owncloud-apache-crt:
   file.managed:
     - name:   /data/www/certs/cloud.crt
     - source: salt://priv-data/services/owncloud/nephele-cloud.crt
-    - makeDirs: True
+    - makedirs: True
 
     - group: www-data
     - user:  www-data
@@ -18,7 +18,7 @@ owncloud-apache-key:
   file.managed:
     - name:   /data/www/certs/cloud.key
     - source: salt://priv-data/services/owncloud/nephele-cloud.key
-    - makeDirs: True
+    - makedirs: True
 
     - group: www-data
     - user:  www-data
