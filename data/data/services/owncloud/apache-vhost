@@ -1,0 +1,38 @@
+# Disable alias by overriding.
+Alias /owncloud "/var/www/404"
+
+
+# Directory configuration.
+<Directory "/var/www/owncloud">
+  Options +FollowSymLinks
+  AllowOverride All
+
+  <IfModule mod_dav.c>
+    Dav off
+  </IfModule>
+
+  SetEnv HOME /var/www/owncloud
+  SetEnv HTTP_HOME /var/www/owncloud
+</Directory>
+
+<Directory "/var/www/owncloud/data/">
+  # just in case if .htaccess gets disabled
+  Require all denied
+</Directory>
+
+
+# Virtual host configuration.
+<VirtualHost *:443>
+  #SSLEngine             On
+  #SSLCertificateFile    /data/www/digests/certs/cloud.crt
+  #SSLCertificateKeyFile /data/www/digests/certs/cloud.key
+
+  ServerName   spddns.no-ip.biz
+  ServerAlias  nephele.sph nephele
+  DocumentRoot /var/www/owncloud/
+
+  ## Please enable this manually, if needed. See also
+  ## https://doc.owncloud.org/server/8.2/admin_manual/issues/index.html#apple-ios
+  # Redirect 301 /.well-known/carddav /owncloud/remote.php/carddav
+  # Redirect 301 /.well-known/caldav  /owncloud/remote.php/caldav
+</VirtualHost>

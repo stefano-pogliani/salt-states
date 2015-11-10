@@ -50,3 +50,38 @@ owncloud-config-deploy:
 
     - require:
       - cmd: owncloud-occ-install
+
+owncloud-apache-vhost:
+  file.managed:
+    - name:   /etc/apache2/sites-available/owncloud
+    - source: salt://data/services/owncloud/apache-vhost
+
+    - group: www-data
+    - user:  www-data
+    - mode:  640
+
+    - require:
+      - cmd: owncloud-occ-install
+
+owncloud-apache-vhost-link:
+  file.symlink:
+    - name:   /etc/apache2/sites-enabled/owncloud
+    - target: /etc/apache2/sites-available/owncloud
+
+    - group: www-data
+    - user:  www-data
+    - mode:  640
+
+    - require:
+      file: owncloud-apache-vhost
+
+
+# Restart apache
+owncloud-apache-restart:
+  service.running:
+    - name: httpd
+    - require:
+      - cmd: owncloud-occ-install
+    - watch:
+      - file: owncloud-apache-vhost
+      - file: owncloud-apache-vhost-link
