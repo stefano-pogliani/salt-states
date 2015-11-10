@@ -15,6 +15,9 @@ owncloud-install:
     - require:
       - pkgrepo: owncloud-repo
 
+owncloud-php-cache:
+  pkg.latest:
+    - name: php-apc
 
 owncloud-mount-data:
   mount.mounted:
@@ -36,6 +39,7 @@ owncloud-data-create:
 
     - require:
       - pkg: owncloud-install
+      - pkg: owncloud-php-cache
 
 
 owncloud-clt-script:

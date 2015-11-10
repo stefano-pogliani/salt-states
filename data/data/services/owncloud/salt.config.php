@@ -13,4 +13,5 @@ $CONFIG = array(
   {% endif %}
   'max_filesize_animated_gifs_public_sharing' => 0,
   'activity_expire_days' => 30,
+  'memcache.local' => '\OC\Memcache\APC',
 );

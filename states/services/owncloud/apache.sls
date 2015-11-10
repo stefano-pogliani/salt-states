@@ -1,6 +1,5 @@
 include:
   - services.owncloud
-  - services.owncloud.install
 
 
 # Deploy required files.
@@ -34,7 +33,6 @@ owncloud-apache-vhost:
     - mode:  644
 
     - require:
-      - cmd: owncloud-occ-install
       - file: owncloud-apache-crt
       - file: owncloud-apache-key
 
@@ -68,12 +66,10 @@ owncloud-apache-default-disable:
 owncloud-apache-restart:
   service.running:
     - name: apache2
-    - require:
-      - pkg: owncloud-install
-      - cmd: owncloud-occ-install
-
     - watch:
       - cmd:  owncloud-apache-default-disable
       - cmd:  owncloud-apache-site-enable
       - cmd:  owncloud-apache-ssl-module
       - file: owncloud-apache-vhost
+      - pkg:  owncloud-install
+      - pkg:  owncloud-php-cache
