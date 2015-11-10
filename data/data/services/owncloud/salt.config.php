@@ -1,12 +1,12 @@
 <?php
 
 $CONFIG = array(
-  {% if domains %}
+  {% if domains -%}
   // This is the list of domains OwnCloud is accessible from.
   // It should include the host name, the dedicated DNS and
   // any fully qualified form of the above.
   'trusted_domains' => array(
-    {% for domain in domains %}
+    {% for domain in domains -%}
     '{{ domain }}',
     {% endfor %}
   ),
