@@ -63,17 +63,19 @@ owncloud-apache-vhost:
     - require:
       - cmd: owncloud-occ-install
 
-owncloud-apache-vhost-link:
-  file.symlink:
-    - name:   /etc/apache2/sites-enabled/owncloud
-    - target: /etc/apache2/sites-available/owncloud
-
-    - group: www-data
-    - user:  www-data
-    - mode:  640
-
+owncloud-apache-site-enable:
+  cmd.run:
+    - name:    a2ensite owncloud
+    - creates: /etc/apache2/sites-enabled/owncloud
     - require:
       - file: owncloud-apache-vhost
+      - pkg:  owncloud-install
+
+owncloud-apache-ssl-module:
+  cmd.run:
+    - name: a2enmod ssl
+    - require:
+      - pkg: owncloud-install
 
 
 # Restart apache
@@ -81,7 +83,10 @@ owncloud-apache-restart:
   service.running:
     - name: apache2
     - require:
+      - pkg: owncloud-install
       - cmd: owncloud-occ-install
+
     - watch:
+      - cmd:  owncloud-apache-site-enable
+      - cmd:  owncloud-apache-ssl-module
       - file: owncloud-apache-vhost
-      - file: owncloud-apache-vhost-link
