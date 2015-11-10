@@ -34,6 +34,7 @@ owncloud-occ-install:
       - file: owncloud-clt-script
 
 
+{% set config = salt["pillar.get"]("owncloud:server:config") %}
 owncloud-config-deploy:
   file.managed:
     - name:   /var/www/owncloud/config/salt.config.php
@@ -42,6 +43,10 @@ owncloud-config-deploy:
     - group: www-data
     - user:  www-data
     - mode:  640
+
+    - template: jinja
+    - context:
+        domains: {{ config.domains }}
 
     - require:
       - cmd: owncloud-occ-install
