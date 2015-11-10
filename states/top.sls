@@ -34,6 +34,7 @@ base:
 
   nephele:
     - services.owncloud
+    - services.owncloud.apache
     - services.owncloud.install
     #- services.owncloud.secure
 

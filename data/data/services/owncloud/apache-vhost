@@ -23,9 +23,9 @@ Alias /owncloud "/var/www/404"
 
 # Virtual host configuration.
 <VirtualHost *:443>
-  #SSLEngine             On
-  #SSLCertificateFile    /data/www/digests/certs/cloud.crt
-  #SSLCertificateKeyFile /data/www/digests/certs/cloud.key
+  SSLEngine             On
+  SSLCertificateFile    /data/www/certs/cloud.crt
+  SSLCertificateKeyFile /data/www/certs/cloud.key
 
   ServerName   spddns.no-ip.biz
   ServerAlias  nephele.sph nephele
