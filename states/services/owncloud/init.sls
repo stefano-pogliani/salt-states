@@ -1,4 +1,5 @@
 include:
+  - repos.debian.php
   - services.mysql.saltctl
 
 
@@ -14,6 +15,7 @@ owncloud-install:
     - name: owncloud
     - require:
       - pkgrepo: owncloud-repo
+      - pkgrepo: php-repo
 
 owncloud-php-cache:
   pkg.latest:

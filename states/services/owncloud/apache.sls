@@ -48,7 +48,8 @@ owncloud-apache-site-enable:
 
 owncloud-apache-ssl-module:
   cmd.run:
-    - name: a2enmod ssl
+    - name:    a2enmod ssl
+    - creates: /etc/apache2/mods-enabled/ssl.load
     - require:
       - pkg: owncloud-install
 
