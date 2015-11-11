@@ -6,3 +6,15 @@ php-deploy-sources:
     - archive_format: tar
     - tar_options: --strip 1
     - if_missing: /opt/php
+
+
+php-install-deps:
+  pkg.installed:
+    - name: libxml2-dev
+
+
+php-configure:
+  cmd.run:
+    - name: "./configure --prefix=/opt/php > configure.log"
+    - creates: /opt/php/bin/php
+    - cwd: "/opt/php-sources"
