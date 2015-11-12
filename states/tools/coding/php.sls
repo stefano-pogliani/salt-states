@@ -16,7 +16,7 @@ php-install-deps:
 php-configure:
   cmd.run:
     - name: "./configure --prefix=/opt/php > configure.log"
-    - creates: /opt/php/bin/php
+    - creates: /opt/php-sources/Makefile
     - cwd: "/opt/php-sources"
 
     - require:
@@ -25,8 +25,16 @@ php-configure:
 
 php-make:
   cmd.run:
-    - name "make > make.log"
-    - creates: /opt/php/bin/php
+    - name: "make > make.log"
+    - creates: /opt/php-sources/sapi/cli/php
     - cwd: "/opt/php-sources"
     - require:
       - cmd: php-configure
+
+php-make-install:
+  cmd.run:
+    - name: "make install > install.log"
+    - creates: /opt/php/bin/php
+    - cwd: "/opt/php-sources"
+    - require:
+      - cmd: php-make

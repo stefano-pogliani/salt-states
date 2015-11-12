@@ -46,6 +46,20 @@ owncloud-apache-site-enable:
       - file: owncloud-apache-vhost
       - pkg:  owncloud-install
 
+owncloud-apache-env-module:
+  cmd.run:
+    - name:    a2enmod env
+    - creates: /etc/apache2/mods-enabled/env.load
+    - require:
+      - pkg: owncloud-install
+
+owncloud-apache-headers-module:
+  cmd.run:
+    - name:    a2enmod headers
+    - creates: /etc/apache2/mods-enabled/headers.load
+    - require:
+      - pkg: owncloud-install
+
 owncloud-apache-ssl-module:
   cmd.run:
     - name:    a2enmod ssl
@@ -69,6 +83,8 @@ owncloud-apache-restart:
     - name: apache2
     - watch:
       - cmd:  owncloud-apache-default-disable
+      - cmd:  owncloud-apache-env-module
+      - cmd:  owncloud-apache-headers-module
       - cmd:  owncloud-apache-site-enable
       - cmd:  owncloud-apache-ssl-module
       - file: owncloud-apache-vhost
