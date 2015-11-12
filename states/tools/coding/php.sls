@@ -18,3 +18,15 @@ php-configure:
     - name: "./configure --prefix=/opt/php > configure.log"
     - creates: /opt/php/bin/php
     - cwd: "/opt/php-sources"
+
+    - require:
+      - archive: php-deploy-sources
+      - pkg: php-install-deps
+
+php-make:
+  cmd.run:
+    - name "make > make.log"
+    - creates: /opt/php/bin/php
+    - cwd: "/opt/php-sources"
+    - require:
+      - cmd: php-configure

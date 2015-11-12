@@ -3,23 +3,28 @@
 
 
 # Varaibles.
-ocpath='/var/www/owncloud'
-htuser='www-data'
-htgroup='www-data'
-rootuser='root' # On QNAP this is admin
+OC_DATA_PATH="/data/owncloud"
+OC_PATH="/var/www/owncloud"
+WEB_GROUP="www-data"
+WEB_USER="www-data"
 
 # Set file permissions.
-find ${ocpath}/ -type f -print0 | xargs -0 chmod 0640
-find ${ocpath}/ -type d -print0 | xargs -0 chmod 0750
+find ${OC_PATH}/ -type f -print0 | xargs -0 chmod 0640
+find ${OC_PATH}/ -type d -print0 | xargs -0 chmod 0750
 
-chown -R ${rootuser}:${htgroup} ${ocpath}/
-chown -R ${htuser}:${htgroup} ${ocpath}/apps/
-chown -R ${htuser}:${htgroup} ${ocpath}/config/
-chown -R ${htuser}:${htgroup} ${ocpath}/data/
-chown -R ${htuser}:${htgroup} ${ocpath}/themes/
+chown -R root:${WEB_GROUP} ${OC_PATH}/
+chown -R ${WEB_USER}:${WEB_GROUP} ${OC_PATH}/apps/
+chown -R ${WEB_USER}:${WEB_GROUP} ${OC_PATH}/config/
+chown -R ${WEB_USER}:${WEB_GROUP} ${OC_PATH}/themes/
+chown root:${WEB_GROUP} ${OC_PATH}/.htaccess
 
-chown ${rootuser}:${htgroup} ${ocpath}/.htaccess
-chown ${rootuser}:${htgroup} ${ocpath}/data/.htaccess
+chmod 0644 ${OC_PATH}/.htaccess
 
-chmod 0644 ${ocpath}/.htaccess
-chmod 0644 ${ocpath}/data/.htaccess
+
+find ${OC_DATA_PATH}/ -type f -print0 | xargs -0 chmod 0640
+find ${OC_DATA_PATH}/ -type d -print0 | xargs -0 chmod 0750
+
+chown -R ${WEB_USER}:${WEB_GROUP} ${OC_DATA_PATH}/
+chown root:${WEB_GROUP} ${OC_DATA_PATH}/.htaccess
+
+chmod 0644 ${OC_DATA_PATH}/.htaccess
