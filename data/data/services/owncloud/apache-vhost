@@ -53,5 +53,11 @@
 <VirtualHost *:80>
   ServerName   spddns.no-ip.biz
   ServerAlias  nephele.sph nephele
-  Redirect permanent / https://spddns.no-ip.biz/
+  Redirect permanent / https://spddns.no-ip.biz:2351/
 </VirtualHost>
+
+
+# Disable server signatures.
+Header unset Server
+ServerSignature Off
+ServerTokens Prod
