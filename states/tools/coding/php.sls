@@ -11,10 +11,17 @@ php-deploy-sources:
 php-install-deps:
   pkg.installed:
     - pkgs:
+        - apache2-prefork-dev
+        - bison
+        - libbz2-dev
+        - libc-client2007e-dev
+        - libcurl4-openssl-dev
         - libfcgi-dev 
         - libfcgi0ldbl
-        - libjpeg62-dbg
+        - libicu-dev
+        - libjpeg8-dev
         - libmcrypt-dev
+        - libpspell-dev
         - libssl-dev
         - libxml2-dev
         - libzip-dev
@@ -27,7 +34,7 @@ php-configure:
         --prefix=/opt/php
         --with-config-file-path=/etc/php5/cli
         --with-config-file-scan-dir=/etc/php5/cli/conf.d
-        --with-apxs2
+        --with-apxs2=/usr/bin/apxs2
         --with-mysql
         --with-zlib-dir
         --with-freetype-dir
@@ -54,20 +61,16 @@ php-configure:
         --with-pcre-regex
         --with-pdo-mysql
         --with-mysqli
-        --with-jpeg-dir=/usr
-        --with-png-dir=/usr
+        --with-jpeg-dir
+        --with-png-dir
         --enable-gd-native-ttf
         --with-openssl
-        --with-libdir=lib64
-        --with-libxml-dir=/usr
+        --with-libxml-dir
         --enable-exif
         --enable-dba
         --with-gettext
         --enable-shmop
         --enable-sysvmsg
-        --enable-wddx
-        --with-imap
-        --with-imap-ssl
         --with-kerberos
         --enable-bcmath
         --enable-ftp
