@@ -1,6 +1,5 @@
 include:
   - services.mysql.saltctl
-  - tools.coding.php
 
 
 owncloud-repo:

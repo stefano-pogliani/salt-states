@@ -25,7 +25,7 @@ owncloud-apache-key:
 
 owncloud-apache-vhost:
   file.managed:
-    - name:   /etc/apache2/sites-available/owncloud
+    - name:   /etc/apache2/sites-available/owncloud.conf
     - source: salt://data/services/owncloud/apache-vhost
 
     - group: root
@@ -41,7 +41,7 @@ owncloud-apache-vhost:
 owncloud-apache-site-enable:
   cmd.run:
     - name:    a2ensite owncloud
-    - creates: /etc/apache2/sites-enabled/owncloud
+    - creates: /etc/apache2/sites-enabled/owncloud.conf
     - require:
       - file: owncloud-apache-vhost
       - pkg:  owncloud-install
@@ -72,7 +72,7 @@ owncloud-apache-ssl-module:
 owncloud-apache-default-disable:
   cmd.run:
     - name: a2dissite 000-default
-    - onlyif: test -e /etc/apache2/sites-enabled/000-default
+    - onlyif: test -e /etc/apache2/sites-enabled/000-default.conf
     - require:
       - pkg: owncloud-install
 
