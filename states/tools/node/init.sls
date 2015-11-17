@@ -1,10 +1,10 @@
 {% set DEFAULT_ARCHIVE  = "https://nodejs.org/dist/v5.1.0/node-v5.1.0-linux-x64.tar.gz" %}
-{% set DEFAULT_CHECKSUM = "https://nodejs.org/dist/v5.1.0/SHASUMS256.txt" %}
+{% set DEFAULT_CHECKSUM = "510e7a2e8639a3ea036f5f6a9f7a66037e3acf8d0c953aeac8d093dea7e41d4c" %}
 
-{% set conf      = salt["pillar.get"]("node", {}) %}
-{% set opt_path  = conf.get("opt_path", "/opt/node") %}
-{% set archive   = conf.get("archive", DEFAULT_ARCHIVE) %}
-{% set checksums = conf.get("checksums", DEFAULT_CHECKSUM) %}
+{% set conf     = salt["pillar.get"]("node", {}) %}
+{% set opt_path = conf.get("opt_path", "/opt/node") %}
+{% set archive  = conf.get("archive", DEFAULT_ARCHIVE) %}
+{% set checksum = conf.get("checksums", DEFAULT_CHECKSUM) %}
 
 
 # Ensure {{ opt_path }} exists.
@@ -20,7 +20,7 @@ node-unpack:
   archive.extracted:
     - name: {{ opt_path }}
     - source: {{ archive }}
-    - source_hash: {{ checksums }}
+    - source_hash: {{ checksum }}
 
     - archive_format: tar
     - tar_options: --strip 1
