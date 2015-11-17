@@ -1,11 +1,10 @@
-{% set opt_path = salt["pillar.get"]("node:opt_path", "/opt/node") %}
-{% set archive = salt["pillar.get"](
-  "node:bin-archive",
-  "salt://external/tools/iojs-bin-v2.0.2.tar.gz"
-) %}
+{% set DEFAULT_ARCHIVE  = "https://nodejs.org/dist/v5.1.0/node-v5.1.0-linux-x64.tar.gz" %}
+{% set DEFAULT_CHECKSUM = "https://nodejs.org/dist/v5.1.0/SHASUMS256.txt" %}
 
-include:
-  - path-profile
+{% set conf      = salt["pillar.get"]("node", {}) %}
+{% set opt_path  = conf.get("opt_path", "/opt/node") %}
+{% set archive   = conf.get("archive", DEFAULT_ARCHIVE) %}
+{% set checksums = conf.get("checksums", DEFAULT_CHECKSUM) %}
 
 
 # Ensure {{ opt_path }} exists.
@@ -21,6 +20,7 @@ node-unpack:
   archive.extracted:
     - name: {{ opt_path }}
     - source: {{ archive }}
+    - source_hash: {{ checksums }}
 
     - archive_format: tar
     - tar_options: --strip 1
@@ -43,15 +43,3 @@ node-alternative-{{ bin }}:
       - archive: node-unpack
 
 {% endfor %}
-
-
-# Add new node to path.
-node-install:
-  path.include:
-    - path: {{ opt_path }}/bin
-
-    - require:
-      - archive: node-unpack
-
-    - require_in:
-      - path: salt_path_profile
