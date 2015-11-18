@@ -4,7 +4,7 @@
 {% set conf     = salt["pillar.get"]("node", {}) %}
 {% set opt_path = conf.get("opt_path", "/opt/node") %}
 {% set archive  = conf.get("archive", DEFAULT_ARCHIVE) %}
-{% set checksum = conf.get("checksums", DEFAULT_CHECKSUM) %}
+{% set checksum = conf.get("checksum", DEFAULT_CHECKSUM) %}
 
 
 # Ensure {{ opt_path }} exists.
