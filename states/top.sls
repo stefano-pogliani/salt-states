@@ -14,7 +14,7 @@ base:
 
   amber:
     - dev-tools.all
-    - tools.node.install.from_archive
+    - tools.node
 
     - tools.coding.gcc.install
     - tools.coding.gcc.alternatives

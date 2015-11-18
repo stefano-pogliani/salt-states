@@ -17,9 +17,8 @@ base:
     - tools.coding.gcc.install
 
     - tools.git
+    - tools.node
     - tools.tmux
-
-    - tools.node.install.from_package
 
     # Formulas
     - openvpn.client
