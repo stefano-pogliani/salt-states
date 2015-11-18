@@ -1,5 +1,5 @@
 {% set DEFAULT_ARCHIVE  = "https://nodejs.org/dist/v5.1.0/node-v5.1.0-linux-x64.tar.gz" %}
-{% set DEFAULT_CHECKSUM = "510e7a2e8639a3ea036f5f6a9f7a66037e3acf8d0c953aeac8d093dea7e41d4c" %}
+{% set DEFAULT_CHECKSUM = "sha256=510e7a2e8639a3ea036f5f6a9f7a66037e3acf8d0c953aeac8d093dea7e41d4c" %}
 
 {% set conf     = salt["pillar.get"]("node", {}) %}
 {% set opt_path = conf.get("opt_path", "/opt/node") %}
